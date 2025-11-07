@@ -1,0 +1,14 @@
+[project]
+name = "hackseoul-fe"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.121.0",
+    "google-genai>=1.49.0",
+    "gspread>=6.2.1",
+    "pillow>=12.0.0",
+    "python-dotenv>=1.2.1",
+    "uvicorn>=0.38.0",
+]
