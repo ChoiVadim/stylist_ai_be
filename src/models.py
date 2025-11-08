@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel, Field
 
 
@@ -35,3 +36,68 @@ class GenerateOutfitOnRequest(BaseModel):
 
 class LikeItemRequest(BaseModel):
     item_id: str = Field(description="The ID of the item to like")
+
+
+# Authentication models
+class UserRegisterRequest(BaseModel):
+    email: str = Field(description="User email address")
+    password: str = Field(description="User password", min_length=6)
+
+
+class UserLoginRequest(BaseModel):
+    email: str = Field(description="User email address")
+    password: str = Field(description="User password")
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user_id: int
+    email: str
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+# Liked outfits models
+class LikeOutfitRequest(BaseModel):
+    item_id: str = Field(description="The ID of the outfit item to like")
+
+
+class LikedOutfitResponse(BaseModel):
+    id: int
+    item_id: str
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+# Color results models
+class SaveColorResultRequest(BaseModel):
+    personal_color_type: str
+    confidence: float
+    undertone: str = "unknown"
+    season: str = "unknown"
+    subtype: str = "unknown"
+    reasoning: str = ""
+
+
+class ColorResultResponse(BaseModel):
+    id: int
+    personal_color_type: str
+    confidence: float
+    undertone: str
+    season: str
+    subtype: str
+    reasoning: str
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
