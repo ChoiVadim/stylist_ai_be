@@ -120,3 +120,43 @@ class ColorResultResponse(BaseModel):
     
     class Config:
         from_attributes = True
+
+
+# User profile models
+class UpdateUserProfileRequest(BaseModel):
+    """Request model for updating user profile - all fields are optional."""
+    height: float | None = Field(None, description="Height in cm", gt=0)
+    weight: float | None = Field(None, description="Weight in kg", gt=0)
+    chest_size: float | None = Field(None, description="Chest/bust size in cm", gt=0)
+    waist_size: float | None = Field(None, description="Waist size in cm", gt=0)
+    hip_size: float | None = Field(None, description="Hip size in cm", gt=0)
+    shoe_size: float | None = Field(None, description="Shoe size (EU)", gt=0)
+    clothing_size: str | None = Field(None, description="Clothing size (S, M, L, XL, etc.)")
+    age: int | None = Field(None, description="Age in years", gt=0, lt=150)
+    gender: str | None = Field(None, description="Gender (male, female, other)")
+    preferred_style: str | None = Field(None, description="Preferred clothing style")
+    body_image: str | None = Field(None, description="Base64 encoded full body image")
+    face_image: str | None = Field(None, description="Base64 encoded face image")
+
+
+class UserProfileResponse(BaseModel):
+    """Response model for user profile."""
+    id: int
+    user_id: int
+    height: float | None = None
+    weight: float | None = None
+    chest_size: float | None = None
+    waist_size: float | None = None
+    hip_size: float | None = None
+    shoe_size: float | None = None
+    clothing_size: str | None = None
+    age: int | None = None
+    gender: str | None = None
+    preferred_style: str | None = None
+    body_image: str | None = None  # Base64 encoded image string
+    face_image: str | None = None  # Base64 encoded image string
+    created_at: datetime
+    updated_at: datetime
+    
+    class Config:
+        from_attributes = True

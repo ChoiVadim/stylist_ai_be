@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 # Import routers
-from src.api import outfits, color, try_on, auth, user_outfits, user_color, shape
+from src.api import outfits, color, try_on, auth, user_outfits, user_color, shape, user_info
 from src.database.user_db import init_db
 
 
@@ -42,6 +42,7 @@ app.include_router(auth.router)
 app.include_router(user_outfits.router)
 app.include_router(user_color.router)
 app.include_router(shape.router)
+app.include_router(user_info.router)
 
 
 @app.get("/")

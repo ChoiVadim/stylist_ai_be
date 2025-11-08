@@ -37,6 +37,7 @@ class User(Base):
     # Relationships
     liked_outfits = relationship("UserLikedOutfit", back_populates="user", cascade="all, delete-orphan")
     color_results = relationship("UserColorResult", back_populates="user", cascade="all, delete-orphan")
+    profile = relationship("UserProfile", back_populates="user", uselist=False, cascade="all, delete-orphan")
 
 
 class UserLikedOutfit(Base):
@@ -68,6 +69,39 @@ class UserColorResult(Base):
     
     # Relationship
     user = relationship("User", back_populates="color_results")
+
+
+class UserProfile(Base):
+    """User profile information for clothing recommendations."""
+    __tablename__ = "user_profiles"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, unique=True, index=True)
+    
+    # Body measurements (optional)
+    height = Column(Float, nullable=True)  # in cm
+    weight = Column(Float, nullable=True)  # in kg
+    chest_size = Column(Float, nullable=True)  # in cm
+    waist_size = Column(Float, nullable=True)  # in cm
+    hip_size = Column(Float, nullable=True)  # in cm
+    shoe_size = Column(Float, nullable=True)  # EU size
+    clothing_size = Column(String, nullable=True)  # S, M, L, XL, etc.
+    
+    # Personal information (optional)
+    age = Column(Integer, nullable=True)
+    gender = Column(String, nullable=True)  # male, female, other
+    preferred_style = Column(String, nullable=True)  # casual, formal, sporty, etc.
+    
+    # Images (optional) - stored as base64 encoded strings
+    body_image = Column(Text, nullable=True)  # Full body photo as base64 string
+    face_image = Column(Text, nullable=True)  # Face photo as base64 string
+    
+    # Timestamps
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationship
+    user = relationship("User", back_populates="profile")
 
 
 def init_db():
