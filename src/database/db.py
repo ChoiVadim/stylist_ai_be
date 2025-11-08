@@ -119,6 +119,53 @@ def get_outfit_by_season_and_category(season: str, category: str, sort_by_popula
     return []
 
 
+def get_outfit_by_id(item_id: str) -> dict | None:
+    """
+    Get a specific outfit item by its ID.
+    
+    Args:
+        item_id: The ID of the item to retrieve
+    
+    Returns:
+        Dictionary containing the item data, or None if not found
+    """
+    df = __get_all_items()
+    # Convert item_id to int for comparison
+    try:
+        item_id_int = int(item_id)
+        item = df.loc[df['ID'] == item_id_int]
+        if not item.empty:
+            return item.to_dict(orient='records')[0]
+    except (ValueError, IndexError):
+        pass
+    return None
+
+
+def get_outfits_by_ids(item_ids: list[str]) -> dict[str, dict]:
+    """
+    Get multiple outfit items by their IDs.
+    
+    Args:
+        item_ids: List of item IDs to retrieve
+    
+    Returns:
+        Dictionary mapping item_id to item data
+    """
+    df = __get_all_items()
+    result = {}
+    
+    for item_id in item_ids:
+        try:
+            item_id_int = int(item_id)
+            item = df.loc[df['ID'] == item_id_int]
+            if not item.empty:
+                result[item_id] = item.to_dict(orient='records')[0]
+        except (ValueError, IndexError):
+            continue
+    
+    return result
+
+
 if __name__ == "__main__":
     print(get_outfit_by_season_and_category("Deep Autumn", "t-shirts"))
 

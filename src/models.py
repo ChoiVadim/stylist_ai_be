@@ -79,6 +79,25 @@ class LikedOutfitResponse(BaseModel):
         from_attributes = True
 
 
+class LikedOutfitWithDetailsResponse(BaseModel):
+    id: int
+    item_id: str
+    created_at: datetime
+    # Full item details
+    description: str | None = None
+    price: str | None = None
+    imageUrl: str | None = None
+    colorHex: str | None = None
+    productUrl: str | None = None
+    colorName: str | None = None
+    detailDescription: str | None = None
+    type: str | None = None
+    personalColorType: str | None = None
+    
+    class Config:
+        from_attributes = True
+
+
 # Color results models
 class SaveColorResultRequest(BaseModel):
     personal_color_type: str

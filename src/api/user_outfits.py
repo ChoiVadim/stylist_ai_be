@@ -6,9 +6,11 @@ from sqlalchemy.orm import Session
 from typing import List
 from src.database.user_db import get_db, User, UserLikedOutfit
 from src.utils.auth import get_current_user
+from src.database.db import get_outfits_by_ids
 from src.models import (
     LikeOutfitRequest,
-    LikedOutfitResponse
+    LikedOutfitResponse,
+    LikedOutfitWithDetailsResponse
 )
 
 router = APIRouter(prefix="/api/user/outfits", tags=["user-outfits"])
@@ -89,33 +91,55 @@ def unlike_outfit(
     db.commit()
 
 
-@router.get("/liked", response_model=List[LikedOutfitResponse])
+@router.get("/liked", response_model=List[LikedOutfitWithDetailsResponse])
 def get_liked_outfits(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
     """
-    Get all liked outfits for the current user.
+    Get all liked outfits for the current user with full item details.
     
     Args:
         current_user: Current authenticated user
         db: Database session
     
     Returns:
-        List of liked outfits
+        List of liked outfits with full item details
     """
     liked_outfits = db.query(UserLikedOutfit).filter(
         UserLikedOutfit.user_id == current_user.id
     ).order_by(UserLikedOutfit.created_at.desc()).all()
     
-    return [
-        LikedOutfitResponse(
-            id=outfit.id,
-            item_id=outfit.item_id,
-            created_at=outfit.created_at
+    # Get all item IDs
+    item_ids = [outfit.item_id for outfit in liked_outfits]
+    
+    # Fetch full item details for all items at once
+    items_data = get_outfits_by_ids(item_ids)
+    
+    # Combine liked outfit info with full item details
+    result = []
+    for outfit in liked_outfits:
+        item_data = items_data.get(outfit.item_id, {})
+        
+        result.append(
+            LikedOutfitWithDetailsResponse(
+                id=outfit.id,
+                item_id=outfit.item_id,
+                created_at=outfit.created_at,
+                # Add full item details if found (using exact Google Sheets column names)
+                description=item_data.get('Description'),
+                price=item_data.get('Price'),
+                imageUrl=item_data.get('ImageURL'),
+                colorHex=item_data.get('ColorHEX'),
+                productUrl=item_data.get('ProductURL'),
+                colorName=item_data.get('ColorName'),
+                detailDescription=item_data.get('DetailDescription'),
+                type=item_data.get('Type'),
+                personalColorType=item_data.get('PersonalColorType')
+            )
         )
-        for outfit in liked_outfits
-    ]
+    
+    return result
 
 
 @router.get("/liked/{item_id}")
