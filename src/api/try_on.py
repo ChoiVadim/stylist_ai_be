@@ -72,6 +72,31 @@ async def download_try_on_full_outfit(
     headers = {"Content-Disposition": 'attachment; filename="full_outfit_try_on.png"'}
     return StreamingResponse(buffer, media_type="image/png", headers=headers)
 
+@router.post("/try-on/generate-full-outfit")
+async def get_outfit_on_full_outfit(    
+    user_image: UploadFile = File(...), 
+    upper_image: UploadFile = File(...),
+    lower_image: UploadFile = File(...),
+    shoes_image: UploadFile = File(...),
+):
+    contents = await user_image.read()
+    user_image_pil = Image.open(BytesIO(contents))
+    contents = await upper_image.read()
+    upper_image_pil = Image.open(BytesIO(contents))
+    contents = await lower_image.read()
+    lower_image_pil = Image.open(BytesIO(contents))
+    contents = await shoes_image.read()
+    shoes_image_pil = Image.open(BytesIO(contents))
+    result = service_get_outfit_on_full_outfit(user_image_pil, upper_image_pil, lower_image_pil, shoes_image_pil)
+    buffer = BytesIO()
+    result.save(buffer, format="PNG")
+    image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return {
+        "try_on_full_outfit_image": f"data:image/png;base64,{image_base64}",
+        "status": "success",
+        "message": "Outfit try-on image generated successfully",
+    }
+
 @router.post("/try-on/generate")
 def get_outfit_on(request: GenerateOutfitOnRequest):
     """
