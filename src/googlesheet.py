@@ -47,6 +47,7 @@ sheet_data = [
 # "occasion": "casual coffee date",
 # "temperatureC": 15,
 # "items": []
+
 counter = 0
 for outfit in outfits:
     sheet_data.append(
