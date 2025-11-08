@@ -85,5 +85,6 @@ def sync_products_to_sheet(products_json_path: str = "data/zara_data_extended.js
 
 if __name__ == "__main__":
     # Example usage
-    sync_outfits_to_sheet()
+    # sync_outfits_to_sheet()
+    sync_products_to_sheet()
 
