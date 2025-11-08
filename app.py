@@ -49,6 +49,10 @@ app.add_middleware(
 )
 
 
+# Rate limiting middleware (must be before logging middleware)
+from src.middleware.rate_limit import rate_limit_middleware
+app.middleware("http")(rate_limit_middleware)
+
 # Request logging middleware
 @app.middleware("http")
 async def log_requests(request: Request, call_next):

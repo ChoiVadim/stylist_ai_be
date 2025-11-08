@@ -10,6 +10,11 @@ from src.services import get_outfit_on as service_get_outfit_on, get_outfit_on_f
 from src.services import get_outfit_on_full_outfit_on_sequential as service_get_outfit_on_sequential
 from src.models import GenerateOutfitOnRequest, GenerateOutfitOnFullOutfitRequest
 from src.utils.logger import get_logger
+from src.utils.image_validator import (
+    validate_image_from_bytes,
+    validate_image_from_base64,
+    ImageValidationError
+)
 import time
 
 logger = get_logger("api.try_on")
@@ -42,13 +47,33 @@ async def download_try_on_image(
     logger.info("Test try-on generation request received (file upload)")
     
     try:
-        contents = await user_image.read()
-        user_image_pil = Image.open(BytesIO(contents))
-        logger.debug(f"User image loaded: size={user_image_pil.size}, format={user_image_pil.format}")
+        user_contents = await user_image.read()
+        # Validate user image (requires face for try-on)
+        try:
+            user_image_pil, user_validation = validate_image_from_bytes(
+                user_contents,
+                require_face=True,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"User image validated: {user_validation}")
+        except ImageValidationError as e:
+            logger.warning(f"User image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=f"User image validation failed: {str(e)}")
         
-        contents = await product_image.read()
-        product_image_pil = Image.open(BytesIO(contents))
-        logger.debug(f"Product image loaded: size={product_image_pil.size}, format={product_image_pil.format}")
+        product_contents = await product_image.read()
+        # Validate product image (no face required)
+        try:
+            product_image_pil, product_validation = validate_image_from_bytes(
+                product_contents,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Product image validated: {product_validation}")
+        except ImageValidationError as e:
+            logger.warning(f"Product image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=f"Product image validation failed: {str(e)}")
         
         result = service_get_outfit_on(user_image_pil, product_image_pil)
         process_time = time.time() - start_time
@@ -75,15 +100,52 @@ async def download_try_on_full_outfit(
     logger.info("Test full outfit try-on generation request received (file upload)")
     
     try:
-        contents = await user_image.read()
-        user_image_pil = Image.open(BytesIO(contents))
-        contents = await upper_image.read()
-        upper_image_pil = Image.open(BytesIO(contents))
-        contents = await lower_image.read()
-        lower_image_pil = Image.open(BytesIO(contents))
-        contents = await shoes_image.read()
-        shoes_image_pil = Image.open(BytesIO(contents))
-        logger.debug("All outfit images loaded successfully")
+        # Validate all images
+        user_contents = await user_image.read()
+        try:
+            user_image_pil, _ = validate_image_from_bytes(
+                user_contents,
+                require_face=True,
+                max_dimension=4096,
+                min_dimension=100
+            )
+        except ImageValidationError as e:
+            raise HTTPException(status_code=400, detail=f"User image validation failed: {str(e)}")
+        
+        upper_contents = await upper_image.read()
+        try:
+            upper_image_pil, _ = validate_image_from_bytes(
+                upper_contents,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+        except ImageValidationError as e:
+            raise HTTPException(status_code=400, detail=f"Upper image validation failed: {str(e)}")
+        
+        lower_contents = await lower_image.read()
+        try:
+            lower_image_pil, _ = validate_image_from_bytes(
+                lower_contents,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+        except ImageValidationError as e:
+            raise HTTPException(status_code=400, detail=f"Lower image validation failed: {str(e)}")
+        
+        shoes_contents = await shoes_image.read()
+        try:
+            shoes_image_pil, _ = validate_image_from_bytes(
+                shoes_contents,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+        except ImageValidationError as e:
+            raise HTTPException(status_code=400, detail=f"Shoes image validation failed: {str(e)}")
+        
+        logger.debug("All outfit images validated successfully")
 
         result = service_get_outfit_on_full_outfit(user_image_pil, upper_image_pil, lower_image_pil, shoes_image_pil)
         process_time = time.time() - start_time
@@ -118,7 +180,37 @@ async def get_outfit_on_full_outfit(
     logger.info("Full outfit try-on generation request received (base64)")
     
     try:
-        result = service_get_outfit_on_full_outfit(request.user_image, request.upper_image, request.lower_image, request.shoes_image)
+        # Validate all images
+        try:
+            user_img, _ = validate_image_from_base64(
+                request.user_image,
+                require_face=True,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            upper_img, _ = validate_image_from_base64(
+                request.upper_image,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            lower_img, _ = validate_image_from_base64(
+                request.lower_image,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            shoes_img, _ = validate_image_from_base64(
+                request.shoes_image,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
+        
+        result = service_get_outfit_on_full_outfit(user_img, upper_img, lower_img, shoes_img)
         process_time = time.time() - start_time
         logger.info(f"Full outfit try-on image generated successfully, time={process_time:.2f}s")
         
@@ -153,7 +245,25 @@ def get_outfit_on(request: GenerateOutfitOnRequest):
     logger.info("Try-on generation request received (base64)")
     
     try:
-        result_image = service_get_outfit_on(request.user_image, request.product_image)
+        # Validate images
+        try:
+            user_img, _ = validate_image_from_base64(
+                request.user_image,
+                require_face=True,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            product_img, _ = validate_image_from_base64(
+                request.product_image,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
+        
+        result_image = service_get_outfit_on(user_img, product_img)
         process_time = time.time() - start_time
         logger.info(f"Try-on image generated successfully, time={process_time:.2f}s")
 

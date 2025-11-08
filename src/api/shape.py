@@ -4,6 +4,11 @@ from fastapi import UploadFile, File
 from PIL import Image
 from io import BytesIO
 from src.utils.logger import get_logger
+from src.utils.image_validator import (
+    validate_image_from_bytes,
+    validate_image_from_base64,
+    ImageValidationError
+)
 import time
 
 logger = get_logger("api.shape")
@@ -36,8 +41,19 @@ async def test_upload_face_image(file: UploadFile = File(...)):
     
     try:
         contents = await file.read()
-        image = Image.open(BytesIO(contents))
-        logger.debug(f"Face image loaded: size={image.size}, format={image.format}")
+        
+        # Validate image (face shape analysis requires face)
+        try:
+            image, validation_result = validate_image_from_bytes(
+                contents,
+                require_face=True,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Face image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
         
         result = get_your_face_shape(image)
         process_time = time.time() - start_time
@@ -76,8 +92,19 @@ async def test_upload_body_image(file: UploadFile = File(...)):
     
     try:
         contents = await file.read()
-        image = Image.open(BytesIO(contents))
-        logger.debug(f"Body image loaded: size={image.size}, format={image.format}")
+        
+        # Validate image (body shape analysis doesn't require face, but validates size/format)
+        try:
+            image, validation_result = validate_image_from_bytes(
+                contents,
+                require_face=False,
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Body image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
         
         result = get_your_body_shape(image)
         process_time = time.time() - start_time

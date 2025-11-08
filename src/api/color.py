@@ -1,7 +1,7 @@
 """
 Color analysis API endpoints.
 """
-from fastapi import APIRouter, UploadFile, File, Query
+from fastapi import APIRouter, UploadFile, File, Query, HTTPException
 from PIL import Image
 from io import BytesIO
 from typing import Literal
@@ -13,6 +13,11 @@ from src.services import (
 )
 from src.models import AnalyzeColorSeasonRequest
 from src.utils.logger import get_logger
+from src.utils.image_validator import (
+    validate_image_from_bytes,
+    validate_image_from_base64,
+    ImageValidationError
+)
 
 logger = get_logger("api.color")
 router = APIRouter(prefix="/api", tags=["color-analysis"])
@@ -30,8 +35,19 @@ async def test_upload_image(file: UploadFile = File(...)):
     
     try:
         contents = await file.read()
-        image = Image.open(BytesIO(contents))
-        logger.debug(f"Image loaded: size={image.size}, format={image.format}")
+        
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_bytes(
+                contents,
+                require_face=True,  # Color analysis requires face
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
         
         result = get_your_color_season(image)
         process_time = time.time() - start_time
@@ -40,6 +56,8 @@ async def test_upload_image(file: UploadFile = File(...)):
             f"confidence={result.confidence:.2f}, time={process_time:.2f}s"
         )
         return result.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
@@ -66,13 +84,28 @@ def get_color_season(request: AnalyzeColorSeasonRequest):
     logger.info("Color analysis request received (single model - Gemini)")
     
     try:
-        result = get_your_color_season(request.image)
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_base64(
+                request.image,
+                require_face=True,  # Color analysis requires face
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
+        
+        result = get_your_color_season(image)
         process_time = time.time() - start_time
         logger.info(
             f"Color analysis completed: season={result.personal_color_type}, "
             f"confidence={result.confidence:.2f}, time={process_time:.2f}s"
         )
         return result.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
@@ -112,8 +145,21 @@ async def get_color_season_ensemble_parallel(
     logger.info(f"Ensemble parallel color analysis request received (method={aggregation_method})")
     
     try:
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_base64(
+                request.image,
+                require_face=True,  # Color analysis requires face
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
+        
         result = await get_your_color_season_ensemble_parallel(
-            request.image,
+            image,
             aggregation_method=aggregation_method
         )
         process_time = time.time() - start_time
@@ -122,6 +168,8 @@ async def get_color_season_ensemble_parallel(
             f"confidence={result.confidence:.2f}, method={aggregation_method}, time={process_time:.2f}s"
         )
         return result.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
@@ -160,8 +208,21 @@ async def get_color_season_ensemble_hybrid(
     logger.info(f"Ensemble hybrid color analysis request received (judge_model={judge_model})")
     
     try:
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_base64(
+                request.image,
+                require_face=True,  # Color analysis requires face
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
+        
         result = await get_your_color_season_ensemble_hybrid(
-            request.image,
+            image,
             judge_model=judge_model
         )
         process_time = time.time() - start_time
@@ -170,6 +231,8 @@ async def get_color_season_ensemble_hybrid(
             f"confidence={result.confidence:.2f}, judge_model={judge_model}, time={process_time:.2f}s"
         )
         return result.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
@@ -197,8 +260,19 @@ async def test_upload_image_ensemble_parallel(
     
     try:
         contents = await file.read()
-        image = Image.open(BytesIO(contents))
-        logger.debug(f"Image loaded: size={image.size}, format={image.format}")
+        
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_bytes(
+                contents,
+                require_face=True,  # Color analysis requires face
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
         
         result = await get_your_color_season_ensemble_parallel(
             image,
@@ -210,6 +284,8 @@ async def test_upload_image_ensemble_parallel(
             f"confidence={result.confidence:.2f}, method={aggregation_method}, time={process_time:.2f}s"
         )
         return result.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
@@ -236,8 +312,19 @@ async def test_upload_image_ensemble_hybrid(
     
     try:
         contents = await file.read()
-        image = Image.open(BytesIO(contents))
-        logger.debug(f"Image loaded: size={image.size}, format={image.format}")
+        
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_bytes(
+                contents,
+                require_face=True,  # Color analysis requires face
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
         
         result = await get_your_color_season_ensemble_hybrid(
             image,
@@ -249,6 +336,8 @@ async def test_upload_image_ensemble_hybrid(
             f"confidence={result.confidence:.2f}, judge_model={judge_model}, time={process_time:.2f}s"
         )
         return result.model_dump()
+    except HTTPException:
+        raise
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(
