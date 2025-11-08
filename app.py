@@ -3,6 +3,7 @@ import uvicorn
 
 import src.stylist as Stylist
 from src.models import AnalyzeColorSeasonRequest, GenerateOutfitOnRequest
+from fastapi import UploadFile, File
 
 app = fastapi.FastAPI()
 
@@ -11,6 +12,22 @@ app = fastapi.FastAPI()
 def read_root():
     return {"message": "Hello, World!"}
 
+@app.post("/api/test/upload")
+async def test_upload_image(file: UploadFile = File(...)):
+    """
+    Test endpoint to upload an image file.
+    You can test this directly in FastAPI docs!
+    """
+    # Read the uploaded file
+    contents = await file.read()
+    
+    # You can process it with PIL if needed
+    from PIL import Image
+    from io import BytesIO
+    
+    image = Image.open(BytesIO(contents))
+    
+    return Stylist.get_your_color_season(image).model_dump()
 
 @app.post("/api/analyze/color")
 def get_color_season(request: AnalyzeColorSeasonRequest):
@@ -22,8 +39,11 @@ def get_color_season(request: AnalyzeColorSeasonRequest):
         "image": "data:image/png;base64,iVBORw0KGgo..." or just "iVBORw0KGgo..."
     }
     """
-    result = Stylist.get_your_color_season(request.image)
-    return result.model_dump()
+    try:
+        result = Stylist.get_your_color_season(request.image)
+        return result.model_dump()
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.post("/api/try-on/generate")
