@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 from src.services import get_outfit_on as service_get_outfit_on, get_outfit_on_full_outfit as service_get_outfit_on_full_outfit
-from src.models import GenerateOutfitOnRequest
+from src.models import GenerateOutfitOnRequest, GenerateOutfitOnFullOutfitRequest
 
 router = APIRouter(prefix="/api", tags=["try-on"])
 
@@ -73,21 +73,21 @@ async def download_try_on_full_outfit(
     return StreamingResponse(buffer, media_type="image/png", headers=headers)
 
 @router.post("/try-on/generate-full-outfit")
-async def get_outfit_on_full_outfit(    
-    user_image: UploadFile = File(...), 
-    upper_image: UploadFile = File(...),
-    lower_image: UploadFile = File(...),
-    shoes_image: UploadFile = File(...),
+async def get_outfit_on_full_outfit(
+    request: GenerateOutfitOnFullOutfitRequest,
 ):
-    contents = await user_image.read()
-    user_image_pil = Image.open(BytesIO(contents))
-    contents = await upper_image.read()
-    upper_image_pil = Image.open(BytesIO(contents))
-    contents = await lower_image.read()
-    lower_image_pil = Image.open(BytesIO(contents))
-    contents = await shoes_image.read()
-    shoes_image_pil = Image.open(BytesIO(contents))
-    result = service_get_outfit_on_full_outfit(user_image_pil, upper_image_pil, lower_image_pil, shoes_image_pil)
+    """
+    Generate full outfit try-on image from base64-encoded images.
+    
+    Request body should contain:
+    {
+        "user_image": "data:image/png;base64,iVBORw0KGgo...",
+        "upper_image": "data:image/png;base64,iVBORw0KGgo...",
+        "lower_image": "data:image/png;base64,iVBORw0KGgo...",
+        "shoes_image": "data:image/png;base64,iVBORw0KGgo..."
+    }
+    """
+    result = service_get_outfit_on_full_outfit(request.user_image, request.upper_image, request.lower_image, request.shoes_image)
     buffer = BytesIO()
     result.save(buffer, format="PNG")
     image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")

@@ -33,6 +33,12 @@ class GenerateOutfitOnRequest(BaseModel):
     user_image: str = Field(description="The image of the user")
     product_image: str = Field(description="The image of the product")
 
+class GenerateOutfitOnFullOutfitRequest(BaseModel):
+    user_image: str = Field(description="The image of the user")
+    upper_image: str = Field(description="The image of the upper body")
+    lower_image: str = Field(description="The image of the lower body")
+    shoes_image: str = Field(description="The image of the shoes")
+
 
 class LikeItemRequest(BaseModel):
     item_id: str = Field(description="The ID of the item to like")
