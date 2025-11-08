@@ -31,3 +31,7 @@ class AnalyzeColorSeasonRequest(BaseModel):
 class GenerateOutfitOnRequest(BaseModel):
     user_image: str = Field(description="The image of the user")
     product_image: str = Field(description="The image of the product")
+
+
+class LikeItemRequest(BaseModel):
+    item_id: str = Field(description="The ID of the item to like")

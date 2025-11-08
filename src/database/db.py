@@ -3,6 +3,7 @@ Database queries for outfit data from Google Sheets.
 """
 import gspread
 import pandas as pd
+from src.database.popularity import add_popularity_to_items
 
 auth_file = "auth.json"
 gc = gspread.service_account(filename=auth_file)
@@ -49,16 +50,17 @@ def get_outfit_by_category(category: str) -> list[dict]:
     return df.to_dict(orient='records')
 
 
-def get_outfit_by_season_and_category(season: str, category: str) -> list[dict]:
+def get_outfit_by_season_and_category(season: str, category: str, sort_by_popularity: bool = True) -> list[dict]:
     """
-    Get outfits filtered by both season and category.
+    Get outfits filtered by both season and category, sorted by popularity.
     
     Args:
         season: Personal color type
         category: Product category
+        sort_by_popularity: If True, sort by popularity (most popular first)
     
     Returns:
-        List of outfit items matching both filters
+        List of outfit items matching both filters, sorted by popularity
     """
     df = __get_all_items()
     if season is not None:
@@ -67,7 +69,13 @@ def get_outfit_by_season_and_category(season: str, category: str) -> list[dict]:
         df = df.loc[df['Type'] == category]
     if season is not None and category is not None:
         df = df.loc[(df['PersonalColorType'] == season) & (df['Type'] == category)]
-        return df.to_dict(orient='records')
+        items = df.to_dict(orient='records')
+        
+        # Sort by popularity if requested
+        if sort_by_popularity:
+            items = add_popularity_to_items(items)
+        
+        return items
     return []
 
 
