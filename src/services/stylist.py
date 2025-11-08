@@ -199,7 +199,7 @@ def get_outfit_on(
         contents=contents,
         config=types.GenerateContentConfig(
             image_config=types.ImageConfig(
-                aspect_ratio="9:16",
+                aspect_ratio="4:5",
             )
         ),
     )
@@ -250,7 +250,7 @@ def get_outfit_on_full_outfit(
         contents=contents,
         config=types.GenerateContentConfig(
             image_config=types.ImageConfig(
-                aspect_ratio="9:16",
+                aspect_ratio="4:5",
             )
         ),
     )
@@ -262,3 +262,66 @@ def get_outfit_on_full_outfit(
             from io import BytesIO
             image = Image.open(BytesIO(part.inline_data.data))
             return image
+
+def get_outfit_on_full_outfit_on_sequential(
+    user_image_input: str | Image.Image,
+    upper_image_input: str | Image.Image,
+    lower_image_input: str | Image.Image,
+    shoes_image_input: str | Image.Image,
+) -> Image.Image:
+    """
+    Generate full outfit try-on image from base64-encoded images.
+    """
+    prompt = config.NANO_BANANA_PROMPT
+
+    if isinstance(user_image_input, str):
+        user_image = base64_to_image(user_image_input)
+    else:
+        user_image = user_image_input
+
+    if isinstance(upper_image_input, str):
+        upper_image = base64_to_image(upper_image_input)
+    else:
+        upper_image = upper_image_input
+
+    if isinstance(lower_image_input, str):
+        lower_image = base64_to_image(lower_image_input)
+    else:
+        lower_image = lower_image_input
+
+    if isinstance(shoes_image_input, str):
+        shoes_image = base64_to_image(shoes_image_input)
+    else:
+        shoes_image = shoes_image_input
+
+    # Start with the original user image, then update it with each generated result
+    current_image = user_image
+
+    for product in [upper_image, lower_image, shoes_image]:
+        contents = [prompt, current_image, product]
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-image",
+            contents=contents,
+            config=types.GenerateContentConfig(
+                image_config=types.ImageConfig(
+                    aspect_ratio="4:5",
+                )
+            ),
+        )
+        for part in response.candidates[0].content.parts:
+            if part.text is not None:
+                print(part.text)
+            elif part.inline_data is not None:
+                from io import BytesIO
+                # Get the generated image
+                temp_image = Image.open(BytesIO(part.inline_data.data))
+                
+                # Create a completely new image by copying the data
+                # This ensures the image is independent of the BytesIO buffer
+                current_image = Image.new(temp_image.mode, temp_image.size)
+                current_image.putdata(list(temp_image.getdata()))
+                
+                # Convert to RGB if necessary
+                if current_image.mode != 'RGB':
+                    current_image = current_image.convert('RGB')
+    return current_image
