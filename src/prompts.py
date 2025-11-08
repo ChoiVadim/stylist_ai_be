@@ -5,6 +5,15 @@ Apply the complete outfit and accessories from Image 2 naturally and realistical
 Capture the result as a realistic OOTD-style photos, taken outdoors in natural lighting.
 The shots should show full-body views, stylish street fashion aesthetics, and cohesive composition that highlights the outfit clearly.
 """
+
+FULL_OUTFIT_PROMPT = """
+Choose the person from Image 1 and dress them in all the clothing and accessories from Image 2, Image 3, and Image 4.
+Keep the person’s identity, face, and pose from Image 1 exactly the same.
+Apply the complete outfit and accessories from Image 2, Image 3, and Image 4 naturally and realistically to match their body shape and movement.
+Capture the result as a realistic OOTD-style photos, taken outdoors in natural lighting.
+The shots should show full-body views, stylish street fashion aesthetics, and cohesive composition that highlights the outfit clearly.
+"""
+
 JSON_PROMPT = """Analyze the person's color season and return ONLY a valid JSON object with the following exact structure (no markdown, no code blocks, just pure JSON):
 {
 "personal_color_type": "string (e.g., 'Deep Autumn', 'Light Spring', etc.)",

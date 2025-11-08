@@ -212,3 +212,53 @@ def get_outfit_on(
             image = Image.open(BytesIO(part.inline_data.data))
             return image
 
+def get_outfit_on_full_outfit(
+    user_image_input: str | Image.Image,
+    upper_image_input: str | Image.Image,
+    lower_image_input: str | Image.Image,
+    shoes_image_input: str | Image.Image,
+) -> Image.Image:
+    """
+    Generate full outfit try-on image.
+    """
+    prompt = config.FULL_OUTFIT_PROMPT
+
+    if isinstance(user_image_input, str):
+        user_image = base64_to_image(user_image_input)
+    else:
+        user_image = user_image_input
+
+    if isinstance(upper_image_input, str):
+        upper_image = base64_to_image(upper_image_input)
+    else:
+        upper_image = upper_image_input
+
+    if isinstance(lower_image_input, str):
+        lower_image = base64_to_image(lower_image_input)
+    else:
+        lower_image = lower_image_input
+
+    if isinstance(shoes_image_input, str):
+        shoes_image = base64_to_image(shoes_image_input)
+    else:
+        shoes_image = shoes_image_input
+
+    contents = [prompt, user_image, upper_image, lower_image, shoes_image]
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash-image",
+        contents=contents,
+        config=types.GenerateContentConfig(
+            image_config=types.ImageConfig(
+                aspect_ratio="9:16",
+            )
+        ),
+    )
+
+    for part in response.candidates[0].content.parts:
+        if part.text is not None:
+            print(part.text)
+        elif part.inline_data is not None:
+            from io import BytesIO
+            image = Image.open(BytesIO(part.inline_data.data))
+            return image

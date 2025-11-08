@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 from PIL import Image
 from io import BytesIO
 import base64
-from src.services import get_outfit_on as service_get_outfit_on
+from src.services import get_outfit_on as service_get_outfit_on, get_outfit_on_full_outfit as service_get_outfit_on_full_outfit
 from src.models import GenerateOutfitOnRequest
 
 router = APIRouter(prefix="/api", tags=["try-on"])
@@ -47,6 +47,30 @@ async def download_try_on_image(
     headers = {"Content-Disposition": 'attachment; filename="try_on.png"'}
     return StreamingResponse(buffer, media_type="image/png", headers=headers)
 
+@router.post("/test/try-on/full_outfit")
+async def download_try_on_full_outfit(
+    user_image: UploadFile = File(...), 
+    upper_image: UploadFile = File(...),
+    lower_image: UploadFile = File(...),
+    shoes_image: UploadFile = File(...),
+):
+
+    contents = await user_image.read()
+    user_image_pil = Image.open(BytesIO(contents))
+    contents = await upper_image.read()
+    upper_image_pil = Image.open(BytesIO(contents))
+    contents = await lower_image.read()
+    lower_image_pil = Image.open(BytesIO(contents))
+    contents = await shoes_image.read()
+    shoes_image_pil = Image.open(BytesIO(contents))
+
+    result = service_get_outfit_on_full_outfit(user_image_pil, upper_image_pil, lower_image_pil, shoes_image_pil)
+
+    buffer = BytesIO()
+    result.save(buffer, format="PNG")   
+    buffer.seek(0)
+    headers = {"Content-Disposition": 'attachment; filename="full_outfit_try_on.png"'}
+    return StreamingResponse(buffer, media_type="image/png", headers=headers)
 
 @router.post("/try-on/generate")
 def get_outfit_on(request: GenerateOutfitOnRequest):
