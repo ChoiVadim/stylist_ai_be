@@ -1,4 +1,4 @@
-# 🎨 StyleAI - Personal Color & Fashion Intelligence Platform
+# 🎨 StylerX - Personal Color & Fashion Intelligence Platform
 
 <div align="center">
 
@@ -17,7 +17,7 @@
 
 ## 📝 Summary
 
-StyleAI is an advanced AI-powered personal color analysis and fashion recommendation platform. Using ensemble learning with three state-of-the-art AI models (Gemini 2.5, GPT-4o, Claude 3.5), it analyzes facial features to determine personal color seasons, recommends compatible fashion items, and provides virtual try-on capabilities. The platform colorimetry science, and user personalization to deliver professional styling advice with 90%+ accuracy through parallel and hybrid model orchestration.
+StylerX is an advanced AI-powered personal color analysis and fashion recommendation platform. Using ensemble learning with three state-of-the-art AI models (Gemini 2.5, GPT-4o, Claude 3.5), it analyzes facial features to determine personal color seasons, recommends compatible fashion items, and provides virtual try-on capabilities. The platform colorimetry science, and user personalization to deliver professional styling advice with 90%+ accuracy through parallel and hybrid model orchestration.
 
 ---
 
@@ -62,14 +62,59 @@ StyleAI is an advanced AI-powered personal color analysis and fashion recommenda
 
 ### Prerequisites
 
-- Python 3.12+
+- **Docker** and **Docker Compose** (Recommended) OR
+- Python 3.12+ with `uv` package manager
 - API Keys: Google Gemini, OpenAI, Anthropic Claude
 
-### Installation
+### 🐳 Docker Installation (Recommended)
+
+The easiest way to get started is using Docker:
 
 ```bash
 # 1. Clone and navigate
 cd hackseoul_be
+
+# 2. Create .env file with your API keys
+cat > .env << EOF
+GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+SECRET_KEY=your_jwt_secret_key_here
+LOG_LEVEL=INFO
+EOF
+
+# 3. Build and start the container
+docker-compose up -d
+
+# 4. View logs (optional)
+docker-compose logs -f
+```
+
+**API Available**: `http://localhost:8000/docs`
+
+**Useful Docker Commands:**
+
+```bash
+# Stop the container
+docker-compose down
+
+# Restart the container
+docker-compose restart
+
+# View logs
+docker-compose logs -f
+
+# Rebuild after code changes
+docker-compose up -d --build
+```
+
+### 💻 Manual Installation (Alternative)
+
+If you prefer to run without Docker:
+
+```bash
+# 1. Clone and navigate
+cd hackseoul_fe
 
 # 2. Create .env file
 cat > .env << EOF
@@ -88,6 +133,10 @@ uv run python3 app.py
 ```
 
 **API Available**: `http://localhost:8000/docs`
+
+> 💡 **Tip**: Docker automatically handles database initialization and migrations. For manual setup, you may need to run `python migrate_db.py` separately.
+
+📖 **For detailed Docker documentation**, see [docs/DOCKER.md](docs/DOCKER.md)
 
 ---
 
@@ -439,6 +488,7 @@ Our system uses the **12-season color analysis model**, combining:
 - **SQLAlchemy**: ORM for database management
 - **Pydantic**: Data validation and settings management
 - **JWT**: Secure authentication
+- **Docker**: Containerization for easy deployment and development
 
 ### AI Models
 
