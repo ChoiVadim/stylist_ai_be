@@ -6,7 +6,7 @@ import uvicorn
 import time
 
 # Import routers
-from src.api import outfits, color, try_on, auth, user_outfits, user_color, shape, user_info
+from src.api import outfits, color, try_on, auth, user_outfits, user_color, shape, user_info, beauty
 from src.database.user_db import init_db
 from src.utils.logger import get_logger
 
@@ -53,6 +53,10 @@ app.add_middleware(
 from src.middleware.rate_limit import rate_limit_middleware
 app.middleware("http")(rate_limit_middleware)
 
+# Metrics middleware (tracks response time and success rate)
+from src.middleware.metrics import metrics_middleware
+app.middleware("http")(metrics_middleware)
+
 # Request logging middleware
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
@@ -95,6 +99,7 @@ app.include_router(user_outfits.router)
 app.include_router(user_color.router)
 app.include_router(shape.router)
 app.include_router(user_info.router)
+app.include_router(beauty.router)
 
 
 @app.get("/")
@@ -104,6 +109,27 @@ def read_root():
     """
     logger.debug("Health check endpoint accessed")
     return {"message": "Let's win Hack Seoul! I need more money, please im broke!"}
+
+
+@app.get("/metrics")
+def get_metrics(endpoint: str | None = None):
+    """
+    Get API metrics (response time and success rate).
+    
+    Args:
+        endpoint: Optional endpoint path to get metrics for specific endpoint.
+                  If not provided, returns metrics for all endpoints.
+    
+    Returns:
+        Dictionary with metrics including:
+        - response_time statistics (avg, min, max, p50, p95, p99)
+        - success_rate
+        - request counts
+    """
+    from src.middleware.metrics import get_metrics_collector
+    
+    metrics_collector = get_metrics_collector()
+    return metrics_collector.get_metrics(endpoint)
 
 
 if __name__ == "__main__":

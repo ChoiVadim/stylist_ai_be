@@ -2,14 +2,20 @@
 Outfit-related API endpoints.
 """
 from fastapi import APIRouter, HTTPException
+import time
 from src.database.db import (
     get_outfit_by_season as db_get_outfit_by_season,
     get_outfit_by_category as db_get_outfit_by_category,
     get_outfit_by_season_and_category as db_get_outfit_by_season_and_category,
 )
 from src.database.popularity import like_item, get_item_popularity
-from src.models import LikeItemRequest
+from src.models import LikeItemRequest, OutfitScoreRequest, OutfitScoreResponse
+from src.services.stylist import score_outfit_compatibility
 from src.utils.logger import get_logger
+from src.utils.image_validator import (
+    validate_image_from_base64,
+    ImageValidationError
+)
 
 logger = get_logger("api.outfits")
 router = APIRouter(prefix="/api/outfit", tags=["outfits"])
@@ -136,4 +142,59 @@ def get_item_popularity_endpoint(item_id: str):
     except Exception as e:
         logger.error(f"Error getting popularity for item {item_id}: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error retrieving popularity: {str(e)}")
+
+
+@router.post("/score", response_model=OutfitScoreResponse)
+def score_outfit(request: OutfitScoreRequest):
+    """
+    Score outfit compatibility based on user image and personal color type.
+    
+    Analyzes how well the outfit matches the user's personal color type and provides
+    detailed feedback with scores for color harmony and style match.
+    
+    Args:
+        request: Contains user_image (base64), optional personal_color_type, and optional outfit_items
+    
+    Returns:
+        OutfitScoreResponse with compatibility scores, feedback, strengths, and improvements
+    """
+    start_time = time.time()
+    logger.info("Outfit score request received")
+    
+    try:
+        # Validate image
+        try:
+            image, validation_result = validate_image_from_base64(
+                request.user_image,
+                require_face=True,  # Outfit scoring requires face for color analysis
+                max_dimension=4096,
+                min_dimension=100
+            )
+            logger.debug(f"Image validated: {validation_result}")
+        except ImageValidationError as e:
+            logger.warning(f"Image validation failed: {str(e)}")
+            raise HTTPException(status_code=400, detail=str(e))
+        
+        # Score outfit compatibility
+        result = score_outfit_compatibility(
+            image,
+            personal_color_type=request.personal_color_type
+        )
+        
+        process_time = time.time() - start_time
+        logger.info(
+            f"Outfit score completed: score={result['score']:.2f}, "
+            f"level={result['compatibility_level']}, time={process_time:.2f}s"
+        )
+        
+        return OutfitScoreResponse(**result)
+    except HTTPException:
+        raise
+    except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Outfit scoring failed: {str(e)}, time={process_time:.2f}s",
+            exc_info=True
+        )
+        raise HTTPException(status_code=500, detail=f"Error scoring outfit: {str(e)}")
 

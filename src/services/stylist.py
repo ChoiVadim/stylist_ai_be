@@ -325,3 +325,89 @@ def get_outfit_on_full_outfit_on_sequential(
                 if current_image.mode != 'RGB':
                     current_image = current_image.convert('RGB')
     return current_image
+
+
+def score_outfit_compatibility(
+    user_image_input: str | Image.Image,
+    personal_color_type: str | None = None
+) -> dict:
+    """
+    Score outfit compatibility based on user image and personal color type.
+    
+    Args:
+        user_image_input: Either a base64 string/data URL or a PIL Image object
+        personal_color_type: Optional personal color type (if not provided, will be analyzed)
+    
+    Returns:
+        Dictionary with compatibility scores and feedback
+    """
+    import json
+    
+    if isinstance(user_image_input, str):
+        image = base64_to_image(user_image_input)
+    else:
+        image = user_image_input
+    
+    # Analyze personal color if not provided
+    if not personal_color_type:
+        color_result = get_your_color_season(image)
+        personal_color_type = color_result.personal_color_type
+    else:
+        color_result = None
+    
+    # Create prompt for outfit scoring
+    scoring_prompt = f"""Analyze the outfit compatibility in this image. The person's personal color type is: {personal_color_type}.
+
+Evaluate the outfit based on:
+1. Color harmony - how well the outfit colors complement the person's personal color type
+2. Style match - how well the outfit style suits the person
+3. Overall compatibility - general assessment
+
+Return ONLY a valid JSON object with this exact structure:
+{{
+    "score": 0.0-1.0,
+    "color_harmony": 0.0-1.0,
+    "style_match": 0.0-1.0,
+    "compatibility_level": "excellent" or "good" or "fair" or "poor",
+    "feedback": "detailed feedback and recommendations",
+    "strengths": ["strength1", "strength2", ...],
+    "improvements": ["improvement1", "improvement2", ...]
+}}"""
+    
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        config=types.GenerateContentConfig(
+            response_mime_type="application/json",
+        ),
+        contents=[image, scoring_prompt],
+    )
+    
+    try:
+        response_text = response.text.strip()
+        if response_text.startswith("```json"):
+            response_text = response_text[7:]
+        if response_text.startswith("```"):
+            response_text = response_text[3:]
+        if response_text.endswith("```"):
+            response_text = response_text[:-3]
+        response_text = response_text.strip()
+        
+        data = json.loads(response_text)
+        
+        # Ensure all required fields exist
+        result = {
+            "score": float(data.get("score", 0.5)),
+            "personal_color_type": personal_color_type,
+            "compatibility_level": data.get("compatibility_level", "fair"),
+            "color_harmony": float(data.get("color_harmony", 0.5)),
+            "style_match": float(data.get("style_match", 0.5)),
+            "feedback": data.get("feedback", "No feedback provided"),
+            "strengths": data.get("strengths", []),
+            "improvements": data.get("improvements", [])
+        }
+        
+        return result
+    except json.JSONDecodeError as e:
+        raise ValueError(f"JSON decode error: {e}. Response text: {response_text[:200]}")
+    except Exception as e:
+        raise ValueError(f"Error parsing outfit score: {e}")

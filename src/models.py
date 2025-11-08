@@ -166,3 +166,55 @@ class UserProfileResponse(BaseModel):
     
     class Config:
         from_attributes = True
+
+
+# Outfit compatibility models
+class OutfitScoreRequest(BaseModel):
+    """Request model for outfit compatibility scoring."""
+    user_image: str = Field(description="Base64 encoded image of the user wearing the outfit")
+    personal_color_type: str | None = Field(None, description="User's personal color type (optional, can be analyzed from image)")
+    outfit_items: list[str] | None = Field(None, description="List of outfit item IDs (optional)")
+
+
+class OutfitScoreResponse(BaseModel):
+    """Response model for outfit compatibility score."""
+    score: float = Field(description="Compatibility score from 0.0 to 1.0", ge=0.0, le=1.0)
+    personal_color_type: str = Field(description="Detected or provided personal color type")
+    compatibility_level: str = Field(description="Compatibility level: excellent, good, fair, poor")
+    color_harmony: float = Field(description="Color harmony score (0.0-1.0)", ge=0.0, le=1.0)
+    style_match: float = Field(description="Style match score (0.0-1.0)", ge=0.0, le=1.0)
+    feedback: str = Field(description="Detailed feedback and recommendations")
+    strengths: list[str] = Field(description="List of outfit strengths")
+    improvements: list[str] = Field(description="List of suggested improvements")
+
+
+# Beauty recommendation models
+class MakeupRecommendationRequest(BaseModel):
+    """Request model for makeup recommendations."""
+    face_image: str = Field(description="Base64 encoded face image")
+    personal_color_type: str | None = Field(None, description="Personal color type (optional)")
+
+
+class MakeupRecommendationResponse(BaseModel):
+    """Response model for makeup recommendations."""
+    personal_color_type: str = Field(description="Detected or provided personal color type")
+    lipstick_colors: list[str] = Field(description="Recommended lipstick colors (HEX)")
+    eyeshadow_colors: list[str] = Field(description="Recommended eyeshadow colors (HEX)")
+    blush_colors: list[str] = Field(description="Recommended blush colors (HEX)")
+    foundation_tone: str = Field(description="Recommended foundation tone")
+    recommendations: str = Field(description="Detailed makeup recommendations")
+
+
+class HairRecommendationRequest(BaseModel):
+    """Request model for hair recommendations."""
+    face_image: str = Field(description="Base64 encoded face image")
+    personal_color_type: str | None = Field(None, description="Personal color type (optional)")
+    current_hair_color: str | None = Field(None, description="Current hair color (optional)")
+
+
+class HairRecommendationResponse(BaseModel):
+    """Response model for hair recommendations."""
+    personal_color_type: str = Field(description="Detected or provided personal color type")
+    recommended_colors: list[str] = Field(description="Recommended hair colors (HEX)")
+    recommended_styles: list[str] = Field(description="Recommended hair styles")
+    recommendations: str = Field(description="Detailed hair recommendations")
