@@ -9,7 +9,9 @@ from src.database.db import (
 )
 from src.database.popularity import like_item, get_item_popularity
 from src.models import LikeItemRequest
+from src.utils.logger import get_logger
 
+logger = get_logger("api.outfits")
 router = APIRouter(prefix="/api/outfit", tags=["outfits"])
 
 
@@ -24,7 +26,15 @@ def get_outfit_by_season(season: str):
     Returns:
         List of outfit items matching the season
     """
-    return db_get_outfit_by_season(season)
+    logger.info(f"Get outfits by season request: season={season}")
+    
+    try:
+        results = db_get_outfit_by_season(season)
+        logger.info(f"Found {len(results)} outfits for season={season}")
+        return results
+    except Exception as e:
+        logger.error(f"Error getting outfits by season={season}: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error retrieving outfits: {str(e)}")
 
 
 @router.get("/category/{category}")
@@ -38,7 +48,15 @@ def get_outfit_by_category(category: str):
     Returns:
         List of outfit items matching the category
     """
-    return db_get_outfit_by_category(category)
+    logger.info(f"Get outfits by category request: category={category}")
+    
+    try:
+        results = db_get_outfit_by_category(category)
+        logger.info(f"Found {len(results)} outfits for category={category}")
+        return results
+    except Exception as e:
+        logger.error(f"Error getting outfits by category={category}: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error retrieving outfits: {str(e)}")
 
 
 @router.get("/season/{season}/category/{category}")
@@ -54,7 +72,15 @@ def get_outfit_by_season_and_category(season: str, category: str):
         List of outfit items matching both filters, sorted by popularity (highest first)
         Each item includes a 'popularity' field showing the number of likes.
     """
-    return db_get_outfit_by_season_and_category(season, category, sort_by_popularity=True)
+    logger.info(f"Get outfits by season and category request: season={season}, category={category}")
+    
+    try:
+        results = db_get_outfit_by_season_and_category(season, category, sort_by_popularity=True)
+        logger.info(f"Found {len(results)} outfits for season={season}, category={category}")
+        return results
+    except Exception as e:
+        logger.error(f"Error getting outfits by season={season}, category={category}: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error retrieving outfits: {str(e)}")
 
 
 @router.post("/like")
@@ -71,8 +97,11 @@ def like_outfit_item(request: LikeItemRequest):
     Returns:
         Success message with new popularity count
     """
+    logger.info(f"Like outfit item request: item_id={request.item_id}")
+    
     try:
         new_count = like_item(request.item_id)
+        logger.info(f"Item {request.item_id} liked successfully, new popularity count: {new_count}")
         return {
             "success": True,
             "message": f"Item {request.item_id} liked successfully",
@@ -80,6 +109,7 @@ def like_outfit_item(request: LikeItemRequest):
             "popularity": new_count
         }
     except Exception as e:
+        logger.error(f"Error liking item {request.item_id}: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error liking item: {str(e)}")
 
 
@@ -94,9 +124,16 @@ def get_item_popularity_endpoint(item_id: str):
     Returns:
         Popularity information for the item
     """
-    popularity = get_item_popularity(item_id)
-    return {
-        "item_id": item_id,
-        "popularity": popularity
-    }
+    logger.info(f"Get item popularity request: item_id={item_id}")
+    
+    try:
+        popularity = get_item_popularity(item_id)
+        logger.debug(f"Item {item_id} popularity: {popularity}")
+        return {
+            "item_id": item_id,
+            "popularity": popularity
+        }
+    except Exception as e:
+        logger.error(f"Error getting popularity for item {item_id}: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error retrieving popularity: {str(e)}")
 

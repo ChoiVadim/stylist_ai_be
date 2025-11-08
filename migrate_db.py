@@ -1,6 +1,6 @@
 """
 Database migration script.
-Run this to update the database schema with the new user_profiles table.
+Run this to update the database schema with all tables (users, products, popularity, etc.).
 """
 from pathlib import Path
 from src.database.user_db import init_db, engine, Base

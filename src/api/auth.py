@@ -16,7 +16,9 @@ from src.models import (
     TokenResponse,
     UserResponse
 )
+from src.utils.logger import get_logger
 
+logger = get_logger("api.auth")
 router = APIRouter(prefix="/api/auth", tags=["authentication"])
 
 
@@ -32,34 +34,47 @@ def register(request: UserRegisterRequest, db: Session = Depends(get_db)):
     Returns:
         Access token and user information
     """
+    logger.info(f"Registration attempt for email: {request.email}")
+    
     # Check if user already exists
     existing_user = db.query(User).filter(User.email == request.email).first()
     if existing_user:
+        logger.warning(f"Registration failed: Email already registered - {request.email}")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email already registered"
         )
     
-    # Create new user
-    hashed_password = get_password_hash(request.password)
-    new_user = User(
-        email=request.email,
-        password_hash=hashed_password
-    )
-    
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    
-    # Create access token
-    access_token = create_access_token(data={"sub": new_user.id})
-    
-    return TokenResponse(
-        access_token=access_token,
-        token_type="bearer",
-        user_id=new_user.id,
-        email=new_user.email
-    )
+    try:
+        # Create new user
+        hashed_password = get_password_hash(request.password)
+        new_user = User(
+            email=request.email,
+            password_hash=hashed_password
+        )
+        
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        
+        logger.info(f"User registered successfully: user_id={new_user.id}, email={new_user.email}")
+        
+        # Create access token
+        access_token = create_access_token(data={"sub": new_user.id})
+        
+        return TokenResponse(
+            access_token=access_token,
+            token_type="bearer",
+            user_id=new_user.id,
+            email=new_user.email
+        )
+    except Exception as e:
+        logger.error(f"Registration error for email {request.email}: {str(e)}", exc_info=True)
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to register user"
+        )
 
 
 @router.post("/login", response_model=TokenResponse)
@@ -74,8 +89,11 @@ def login(request: UserLoginRequest, db: Session = Depends(get_db)):
     Returns:
         Access token and user information
     """
+    logger.info(f"Login attempt for email: {request.email}")
+    
     user = authenticate_user(db, request.email, request.password)
     if not user:
+        logger.warning(f"Login failed: Invalid credentials for email {request.email}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
@@ -84,6 +102,7 @@ def login(request: UserLoginRequest, db: Session = Depends(get_db)):
     
     # Create access token
     access_token = create_access_token(data={"sub": user.id})
+    logger.info(f"Login successful: user_id={user.id}, email={user.email}")
     
     return TokenResponse(
         access_token=access_token,
@@ -104,6 +123,8 @@ def get_current_user_info(current_user: User = Depends(get_current_user)):
     Returns:
         User information
     """
+    logger.info(f"Get current user info request: user_id={current_user.id}, email={current_user.email}")
+    
     return UserResponse(
         id=current_user.id,
         email=current_user.email,

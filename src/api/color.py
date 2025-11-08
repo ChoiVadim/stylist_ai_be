@@ -5,13 +5,16 @@ from fastapi import APIRouter, UploadFile, File, Query
 from PIL import Image
 from io import BytesIO
 from typing import Literal
+import time
 from src.services import (
     get_your_color_season,
     get_your_color_season_ensemble_parallel,
     get_your_color_season_ensemble_hybrid,
 )
 from src.models import AnalyzeColorSeasonRequest
+from src.utils.logger import get_logger
 
+logger = get_logger("api.color")
 router = APIRouter(prefix="/api", tags=["color-analysis"])
 
 
@@ -22,9 +25,28 @@ async def test_upload_image(file: UploadFile = File(...)):
     
     Use this for testing directly in FastAPI docs with file upload.
     """
-    contents = await file.read()
-    image = Image.open(BytesIO(contents))
-    return get_your_color_season(image).model_dump()
+    start_time = time.time()
+    logger.info("Test color analysis request received (file upload)")
+    
+    try:
+        contents = await file.read()
+        image = Image.open(BytesIO(contents))
+        logger.debug(f"Image loaded: size={image.size}, format={image.format}")
+        
+        result = get_your_color_season(image)
+        process_time = time.time() - start_time
+        logger.info(
+            f"Test color analysis completed: season={result.personal_color_type}, "
+            f"confidence={result.confidence:.2f}, time={process_time:.2f}s"
+        )
+        return result.model_dump()
+    except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Test color analysis failed: {str(e)}, time={process_time:.2f}s",
+            exc_info=True
+        )
+        return {"error": str(e)}
 
 
 @router.post("/analyze/color")
@@ -40,10 +62,23 @@ def get_color_season(request: AnalyzeColorSeasonRequest):
     Returns:
         Personal color analysis results including season, undertone, confidence, etc.
     """
+    start_time = time.time()
+    logger.info("Color analysis request received (single model - Gemini)")
+    
     try:
         result = get_your_color_season(request.image)
+        process_time = time.time() - start_time
+        logger.info(
+            f"Color analysis completed: season={result.personal_color_type}, "
+            f"confidence={result.confidence:.2f}, time={process_time:.2f}s"
+        )
         return result.model_dump()
     except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Color analysis failed: {str(e)}, time={process_time:.2f}s",
+            exc_info=True
+        )
         return {"error": str(e)}
 
 
@@ -73,13 +108,26 @@ async def get_color_season_ensemble_parallel(
     Returns:
         Aggregated personal color analysis results from all models.
     """
+    start_time = time.time()
+    logger.info(f"Ensemble parallel color analysis request received (method={aggregation_method})")
+    
     try:
         result = await get_your_color_season_ensemble_parallel(
             request.image,
             aggregation_method=aggregation_method
         )
+        process_time = time.time() - start_time
+        logger.info(
+            f"Ensemble parallel analysis completed: season={result.personal_color_type}, "
+            f"confidence={result.confidence:.2f}, method={aggregation_method}, time={process_time:.2f}s"
+        )
         return result.model_dump()
     except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Ensemble parallel analysis failed: {str(e)}, method={aggregation_method}, time={process_time:.2f}s",
+            exc_info=True
+        )
         return {"error": str(e)}
 
 
@@ -108,13 +156,26 @@ async def get_color_season_ensemble_hybrid(
     Returns:
         Judged personal color analysis results with expert evaluation.
     """
+    start_time = time.time()
+    logger.info(f"Ensemble hybrid color analysis request received (judge_model={judge_model})")
+    
     try:
         result = await get_your_color_season_ensemble_hybrid(
             request.image,
             judge_model=judge_model
         )
+        process_time = time.time() - start_time
+        logger.info(
+            f"Ensemble hybrid analysis completed: season={result.personal_color_type}, "
+            f"confidence={result.confidence:.2f}, judge_model={judge_model}, time={process_time:.2f}s"
+        )
         return result.model_dump()
     except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Ensemble hybrid analysis failed: {str(e)}, judge_model={judge_model}, time={process_time:.2f}s",
+            exc_info=True
+        )
         return {"error": str(e)}
 
 
@@ -131,15 +192,30 @@ async def test_upload_image_ensemble_parallel(
     
     Use this for testing directly in FastAPI docs with file upload.
     """
+    start_time = time.time()
+    logger.info(f"Test ensemble parallel color analysis request received (file upload, method={aggregation_method})")
+    
     try:
         contents = await file.read()
         image = Image.open(BytesIO(contents))
+        logger.debug(f"Image loaded: size={image.size}, format={image.format}")
+        
         result = await get_your_color_season_ensemble_parallel(
             image,
             aggregation_method=aggregation_method
         )
+        process_time = time.time() - start_time
+        logger.info(
+            f"Test ensemble parallel analysis completed: season={result.personal_color_type}, "
+            f"confidence={result.confidence:.2f}, method={aggregation_method}, time={process_time:.2f}s"
+        )
         return result.model_dump()
     except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Test ensemble parallel analysis failed: {str(e)}, method={aggregation_method}, time={process_time:.2f}s",
+            exc_info=True
+        )
         return {"error": str(e)}
 
 @router.post("/test/analyze/color/ensemble/hybrid")
@@ -155,13 +231,28 @@ async def test_upload_image_ensemble_hybrid(
     
     Use this for testing directly in FastAPI docs with file upload.
     """
+    start_time = time.time()
+    logger.info(f"Test ensemble hybrid color analysis request received (file upload, judge_model={judge_model})")
+    
     try:
         contents = await file.read()
         image = Image.open(BytesIO(contents))
+        logger.debug(f"Image loaded: size={image.size}, format={image.format}")
+        
         result = await get_your_color_season_ensemble_hybrid(
             image,
             judge_model=judge_model
         )
+        process_time = time.time() - start_time
+        logger.info(
+            f"Test ensemble hybrid analysis completed: season={result.personal_color_type}, "
+            f"confidence={result.confidence:.2f}, judge_model={judge_model}, time={process_time:.2f}s"
+        )
         return result.model_dump()
     except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(
+            f"Test ensemble hybrid analysis failed: {str(e)}, judge_model={judge_model}, time={process_time:.2f}s",
+            exc_info=True
+        )
         return {"error": str(e)}

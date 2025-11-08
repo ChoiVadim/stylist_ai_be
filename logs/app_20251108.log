@@ -1,0 +1,32 @@
+2025-11-08 20:34:48 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-08 20:34:48 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-08 20:34:50 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-08 20:34:50 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-08 20:34:50 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-08 20:34:50 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-08 20:34:50 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-08 20:34:50 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-08 20:34:53 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 20:34:53 - hackseoul.app - DEBUG - [app.py:101] - read_root() - Health check endpoint accessed
+2025-11-08 20:34:53 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 20:35:23 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 20:35:23 - hackseoul.app - DEBUG - [app.py:101] - read_root() - Health check endpoint accessed
+2025-11-08 20:35:23 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 20:35:37 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET /docs - Client: 172.217.174.106
+2025-11-08 20:35:37 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.009s
+2025-11-08 20:35:37 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET /openapi.json - Client: 172.217.174.106
+2025-11-08 20:35:37 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.098s
+2025-11-08 20:35:50 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET / - Client: 172.217.174.106
+2025-11-08 20:35:50 - hackseoul.app - DEBUG - [app.py:101] - read_root() - Health check endpoint accessed
+2025-11-08 20:35:50 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 20:35:53 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 20:35:53 - hackseoul.app - DEBUG - [app.py:101] - read_root() - Health check endpoint accessed
+2025-11-08 20:35:53 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 20:36:07 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET /api/outfit/season/Deep Autumn - Client: 172.217.174.106
+2025-11-08 20:36:07 - hackseoul.api.outfits - INFO - [outfits.py:29] - get_outfit_by_season() - Get outfits by season request: season=Deep Autumn
+2025-11-08 20:36:07 - hackseoul.api.outfits - INFO - [outfits.py:33] - get_outfit_by_season() - Found 191 outfits for season=Deep Autumn
+2025-11-08 20:36:07 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET /api/outfit/season/Deep Autumn - Status: 200 - Time: 0.036s
+2025-11-08 20:36:24 - hackseoul.app - INFO - [app.py:59] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 20:36:24 - hackseoul.app - DEBUG - [app.py:101] - read_root() - Health check endpoint accessed
+2025-11-08 20:36:24 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 20:36:28 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...

@@ -1,34 +1,18 @@
 """
 Popularity tracking for outfit items.
-Stores like counts in a JSON file for simplicity (can be migrated to database later).
+Stores like counts in the database.
 """
-import json
-import os
-from pathlib import Path
+from sqlalchemy.orm import Session
+from src.database.user_db import SessionLocal, Popularity
 from typing import Dict
+from src.utils.logger import get_logger
 
-POPULARITY_FILE = Path("data/popularity.json")
-
-
-def _load_popularity() -> Dict[str, int]:
-    """Load popularity data from file."""
-    if not POPULARITY_FILE.exists():
-        return {}
-    
-    try:
-        with open(POPULARITY_FILE, "r") as f:
-            return json.load(f)
-    except (json.JSONDecodeError, FileNotFoundError):
-        return {}
+logger = get_logger("database.popularity")
 
 
-def _save_popularity(data: Dict[str, int]):
-    """Save popularity data to file."""
-    # Ensure data directory exists
-    POPULARITY_FILE.parent.mkdir(parents=True, exist_ok=True)
-    
-    with open(POPULARITY_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+def _get_db_session() -> Session:
+    """Get a database session."""
+    return SessionLocal()
 
 
 def like_item(item_id: str) -> int:
@@ -41,11 +25,29 @@ def like_item(item_id: str) -> int:
     Returns:
         New like count for the item
     """
-    popularity = _load_popularity()
-    current_count = popularity.get(item_id, 0)
-    popularity[item_id] = current_count + 1
-    _save_popularity(popularity)
-    return popularity[item_id]
+    db = _get_db_session()
+    try:
+        # Try to get existing popularity record
+        popularity = db.query(Popularity).filter(Popularity.item_id == item_id).first()
+        
+        if popularity:
+            # Increment existing count
+            popularity.like_count += 1
+            db.commit()
+            return popularity.like_count
+        else:
+            # Create new record
+            popularity = Popularity(item_id=item_id, like_count=1)
+            db.add(popularity)
+            db.commit()
+            db.refresh(popularity)
+            return popularity.like_count
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error liking item {item_id}: {str(e)}", exc_info=True)
+        raise
+    finally:
+        db.close()
 
 
 def get_item_popularity(item_id: str) -> int:
@@ -58,8 +60,12 @@ def get_item_popularity(item_id: str) -> int:
     Returns:
         Like count (0 if item has no likes)
     """
-    popularity = _load_popularity()
-    return popularity.get(item_id, 0)
+    db = _get_db_session()
+    try:
+        popularity = db.query(Popularity).filter(Popularity.item_id == item_id).first()
+        return popularity.like_count if popularity else 0
+    finally:
+        db.close()
 
 
 def get_all_popularity() -> Dict[str, int]:
@@ -69,7 +75,12 @@ def get_all_popularity() -> Dict[str, int]:
     Returns:
         Dictionary mapping item_id to like count
     """
-    return _load_popularity()
+    db = _get_db_session()
+    try:
+        popularities = db.query(Popularity).all()
+        return {str(pop.item_id): pop.like_count for pop in popularities}
+    finally:
+        db.close()
 
 
 def add_popularity_to_items(items: list[dict]) -> list[dict]:

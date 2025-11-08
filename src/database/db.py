@@ -1,63 +1,70 @@
 """
-Database queries for outfit data from Google Sheets.
+Database queries for outfit data from database.
 """
-import gspread
-import pandas as pd
+from sqlalchemy.orm import Session
+from src.database.user_db import SessionLocal, Product
 from src.database.popularity import add_popularity_to_items
+from src.utils.logger import get_logger
 from functools import lru_cache
 from time import time
 
-auth_file = "auth.json"
-sheet_url = "https://docs.google.com/spreadsheets/d/10NkfXVm8WYel4GTTTIaFyPxmVy52ODjda0WNpl70dF8/edit?gid=0#gid=0"
-
-# Lazy initialization - only connect when needed
-_gc = None
-_sheet_file = None
-_sheet = None
+logger = get_logger("database.products")
 
 # Cache configuration: 5 minutes TTL
 CACHE_TTL = 300  # seconds
 
 
-def _get_sheet():
-    """
-    Lazy initialization of Google Sheets connection.
-    Only connects when first accessed.
-    """
-    global _gc, _sheet_file, _sheet
-    
-    if _sheet is None:
-        _gc = gspread.service_account(filename=auth_file)
-        _sheet_file = _gc.open_by_url(sheet_url)
-        _sheet = _sheet_file.worksheet("Main")
-    
-    return _sheet
+def _get_db_session() -> Session:
+    """Get a database session."""
+    return SessionLocal()
 
 
 @lru_cache(maxsize=1)
-def __get_all_items_cached(cache_time: int):
+def __get_all_items_cached(cache_time: int) -> list[dict]:
     """
-    Internal function to fetch all items from the sheet with time-based cache.
+    Internal function to fetch all items from the database with time-based cache.
     
     Args:
         cache_time: Current cache period (used to invalidate cache after TTL)
     
     Returns:
-        DataFrame with all items from Google Sheets
+        List of dictionaries with all items from database
     """
-    sheet = _get_sheet()
-    data = sheet.get_all_records()
-    df = pd.DataFrame(data)
-    return df
+    db = _get_db_session()
+    try:
+        products = db.query(Product).all()
+        return [_product_to_dict(product) for product in products]
+    finally:
+        db.close()
 
 
-def __get_all_items():
+def __get_all_items() -> list[dict]:
     """
     Get all items with automatic time-based cache invalidation.
     Cache refreshes every CACHE_TTL seconds.
     """
     cache_time = int(time() // CACHE_TTL)
     return __get_all_items_cached(cache_time)
+
+
+def _product_to_dict(product: Product) -> dict:
+    """
+    Convert Product model to dictionary format matching the original Google Sheets structure.
+    
+    This maintains backward compatibility with the existing API.
+    """
+    return {
+        "ID": product.external_id,  # Use external_id to match original ID field
+        "Description": product.description or "",
+        "Price": product.price or "",
+        "ImageURL": product.image_url or "",
+        "ColorHEX": product.color_hex or "",
+        "ProductURL": product.product_url or "",
+        "ColorName": product.color_name or "",
+        "DetailDescription": product.detail_description or "",
+        "Type": product.type or "",
+        "PersonalColorType": product.personal_color_type or "",
+    }
 
 
 def get_outfit_by_season(season: str) -> list[dict]:
@@ -70,9 +77,14 @@ def get_outfit_by_season(season: str) -> list[dict]:
     Returns:
         List of outfit items matching the season
     """
-    df = __get_all_items()
-    df = df.loc[df['PersonalColorType'] == season]
-    return df.to_dict(orient='records')
+    db = _get_db_session()
+    try:
+        products = db.query(Product).filter(
+            Product.personal_color_type == season
+        ).all()
+        return [_product_to_dict(product) for product in products]
+    finally:
+        db.close()
 
 
 def get_outfit_by_category(category: str) -> list[dict]:
@@ -85,9 +97,14 @@ def get_outfit_by_category(category: str) -> list[dict]:
     Returns:
         List of outfit items matching the category
     """
-    df = __get_all_items()
-    df = df.loc[df['Type'] == category]
-    return df.to_dict(orient='records')
+    db = _get_db_session()
+    try:
+        products = db.query(Product).filter(
+            Product.type == category
+        ).all()
+        return [_product_to_dict(product) for product in products]
+    finally:
+        db.close()
 
 
 def get_outfit_by_season_and_category(season: str, category: str, sort_by_popularity: bool = True) -> list[dict]:
@@ -102,21 +119,25 @@ def get_outfit_by_season_and_category(season: str, category: str, sort_by_popula
     Returns:
         List of outfit items matching both filters, sorted by popularity
     """
-    df = __get_all_items()
-    if season is not None:
-        df = df.loc[df['PersonalColorType'] == season]
-    if category is not None:
-        df = df.loc[df['Type'] == category]
-    if season is not None and category is not None:
-        df = df.loc[(df['PersonalColorType'] == season) & (df['Type'] == category)]
-        items = df.to_dict(orient='records')
+    db = _get_db_session()
+    try:
+        query = db.query(Product)
+        
+        if season is not None:
+            query = query.filter(Product.personal_color_type == season)
+        if category is not None:
+            query = query.filter(Product.type == category)
+        
+        products = query.all()
+        items = [_product_to_dict(product) for product in products]
         
         # Sort by popularity if requested
         if sort_by_popularity:
             items = add_popularity_to_items(items)
         
         return items
-    return []
+    finally:
+        db.close()
 
 
 def get_outfit_by_id(item_id: str) -> dict | None:
@@ -124,21 +145,23 @@ def get_outfit_by_id(item_id: str) -> dict | None:
     Get a specific outfit item by its ID.
     
     Args:
-        item_id: The ID of the item to retrieve
+        item_id: The ID of the item to retrieve (external_id)
     
     Returns:
         Dictionary containing the item data, or None if not found
     """
-    df = __get_all_items()
-    # Convert item_id to int for comparison
+    db = _get_db_session()
     try:
-        item_id_int = int(item_id)
-        item = df.loc[df['ID'] == item_id_int]
-        if not item.empty:
-            return item.to_dict(orient='records')[0]
-    except (ValueError, IndexError):
-        pass
-    return None
+        try:
+            item_id_int = int(item_id)
+            product = db.query(Product).filter(Product.external_id == item_id_int).first()
+            if product:
+                return _product_to_dict(product)
+        except ValueError:
+            pass
+        return None
+    finally:
+        db.close()
 
 
 def get_outfits_by_ids(item_ids: list[str]) -> dict[str, dict]:
@@ -146,26 +169,37 @@ def get_outfits_by_ids(item_ids: list[str]) -> dict[str, dict]:
     Get multiple outfit items by their IDs.
     
     Args:
-        item_ids: List of item IDs to retrieve
+        item_ids: List of item IDs to retrieve (external_ids)
     
     Returns:
         Dictionary mapping item_id to item data
     """
-    df = __get_all_items()
-    result = {}
-    
-    for item_id in item_ids:
-        try:
-            item_id_int = int(item_id)
-            item = df.loc[df['ID'] == item_id_int]
-            if not item.empty:
-                result[item_id] = item.to_dict(orient='records')[0]
-        except (ValueError, IndexError):
-            continue
-    
-    return result
+    db = _get_db_session()
+    try:
+        result = {}
+        
+        # Convert all IDs to integers, filtering out invalid ones
+        valid_ids = []
+        for item_id in item_ids:
+            try:
+                valid_ids.append(int(item_id))
+            except ValueError:
+                continue
+        
+        if not valid_ids:
+            return result
+        
+        # Query all products with matching external_ids
+        products = db.query(Product).filter(Product.external_id.in_(valid_ids)).all()
+        
+        # Build result dictionary
+        for product in products:
+            result[str(product.external_id)] = _product_to_dict(product)
+        
+        return result
+    finally:
+        db.close()
 
 
 if __name__ == "__main__":
     print(get_outfit_by_season_and_category("Deep Autumn", "t-shirts"))
-

@@ -1,0 +1,4 @@
+2025-11-09 05:30:35 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-09 05:30:35 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-09 05:30:40 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-09 05:30:40 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully

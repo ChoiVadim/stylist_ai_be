@@ -6,6 +6,9 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Foreign
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from pathlib import Path
+from src.utils.logger import get_logger
+
+logger = get_logger("database")
 
 # Database file path
 DB_PATH = Path("data/users.db")
@@ -46,7 +49,7 @@ class UserLikedOutfit(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
-    item_id = Column(String, nullable=False, index=True)  # Item ID from Google Sheets
+    item_id = Column(String, nullable=False, index=True)  # Item ID from products table (external_id)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationship
@@ -104,9 +107,52 @@ class UserProfile(Base):
     user = relationship("User", back_populates="profile")
 
 
+class Product(Base):
+    """Product/outfit item model for storing clothing items."""
+    __tablename__ = "products"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    # Store the original ID from JSON as external_id to maintain compatibility
+    external_id = Column(Integer, unique=True, index=True, nullable=False)
+    
+    # Product information
+    description = Column(Text, nullable=True)
+    price = Column(String, nullable=True)
+    image_url = Column(Text, nullable=True)
+    color_hex = Column(String, nullable=True)
+    product_url = Column(Text, nullable=True)
+    color_name = Column(String, nullable=True)
+    detail_description = Column(Text, nullable=True)
+    type = Column(String, nullable=True, index=True)  # Category: t-shirts, trousers, etc.
+    personal_color_type = Column(String, nullable=True, index=True)  # Deep Autumn, etc.
+    
+    # Timestamps
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class Popularity(Base):
+    """Popularity tracking for outfit items - stores like counts."""
+    __tablename__ = "popularity"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    item_id = Column(String, unique=True, index=True, nullable=False)  # Item ID (external_id from products)
+    like_count = Column(Integer, default=0, nullable=False)
+    
+    # Timestamps
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
 def init_db():
     """Initialize database - create all tables."""
-    Base.metadata.create_all(bind=engine)
+    try:
+        logger.info(f"Initializing database at {DB_PATH}")
+        Base.metadata.create_all(bind=engine)
+        logger.info("Database tables created successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize database: {str(e)}", exc_info=True)
+        raise
 
 
 def get_db():
