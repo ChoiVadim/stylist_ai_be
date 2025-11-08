@@ -8,15 +8,56 @@ from google.genai import types
 from src.config import config
 from src.models import AnalyzeColorSeasonResponseModel
 from src.utils.image_utils import base64_to_image
+from src.services.ensemble import ensemble_analyzer
 
 client = config.get_client()
 
+def get_your_face_shape(image_input: str | Image.Image) -> str:
+    """
+    Analyze face shape from an image.
+    """
+    if isinstance(image_input, str):
+        image = base64_to_image(image_input)
+    else:
+        image = image_input
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        config=types.GenerateContentConfig(
+            system_instruction="You are a helpful assistant that analyzes the face shape of a person in an image. You will return the face shape of the person in the image.",
+            response_mime_type="text/plain",
+        ),
+        contents=[image],
+    )
+
+    return response.text.strip()
+
+def get_your_body_shape(image_input: str | Image.Image) -> str:
+    """
+    Analyze body shape from an image.
+    """
+    if isinstance(image_input, str):
+        image = base64_to_image(image_input)
+    else:
+        image = image_input
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        config=types.GenerateContentConfig(
+            system_instruction="You are a helpful assistant that analyzes the body shape of a person in an image. You will return the body shape of the person in the image.",
+            response_mime_type="text/plain",
+        ),
+        contents=[image],
+    )
+
+    return response.text.strip()
 
 def get_your_color_season(
     image_input: str | Image.Image,
 ) -> AnalyzeColorSeasonResponseModel:
     """
-    Analyze color season from an image.
+    Analyze color season from an image (single model - Gemini only).
+    This is the original implementation for backward compatibility.
 
     Args:
         image_input: Either a base64 string/data URL or a PIL Image object
@@ -77,6 +118,52 @@ def get_your_color_season(
             f"Received data: {data_str}\n"
             f"Response text (first 500 chars): {response_text[:500]}"
         )
+
+
+async def get_your_color_season_ensemble_parallel(
+    image_input: str | Image.Image,
+    aggregation_method: str = "weighted_average"
+) -> AnalyzeColorSeasonResponseModel:
+    """
+    Analyze color season using ensemble of 3 models (Gemini, OpenAI, Claude) in parallel.
+    
+    All models analyze simultaneously, then results are aggregated.
+    This is the fastest ensemble approach.
+    
+    Args:
+        image_input: Either a base64 string/data URL or a PIL Image object
+        aggregation_method: "voting", "weighted_average", or "consensus"
+    
+    Returns:
+        AnalyzeColorSeasonResponseModel object with aggregated results
+    """
+    return await ensemble_analyzer.analyze_parallel(
+        image_input, 
+        aggregation_method=aggregation_method
+    )
+
+
+async def get_your_color_season_ensemble_hybrid(
+    image_input: str | Image.Image,
+    judge_model: str = "gemini"
+) -> AnalyzeColorSeasonResponseModel:
+    """
+    Analyze color season using hybrid ensemble approach.
+    
+    Two models analyze in parallel, third model acts as judge/evaluator.
+    This provides deeper analysis and validation.
+    
+    Args:
+        image_input: Either a base64 string/data URL or a PIL Image object
+        judge_model: "gemini", "openai", or "claude" - which model judges the results
+    
+    Returns:
+        AnalyzeColorSeasonResponseModel object with judged results
+    """
+    return await ensemble_analyzer.analyze_hybrid(
+        image_input,
+        judge_model=judge_model
+    )
 
 
 def get_outfit_on(

@@ -14,9 +14,21 @@ class Config:
 
     def __init__(self):
         self.client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+        self._openai_key = os.getenv("OPENAI_API_KEY")
+        self._anthropic_key = os.getenv("ANTHROPIC_API_KEY")
 
     def get_client(self):
         return self.client
+    
+    def get_openai_key(self):
+        if not self._openai_key:
+            raise ValueError("OPENAI_API_KEY not found in environment variables")
+        return self._openai_key
+    
+    def get_anthropic_key(self):
+        if not self._anthropic_key:
+            raise ValueError("ANTHROPIC_API_KEY not found in environment variables")
+        return self._anthropic_key
 
 
 config = Config()
