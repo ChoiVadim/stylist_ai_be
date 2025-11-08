@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 from PIL import Image
 from io import BytesIO
 import base64
-import src.stylist as Stylist
+from src.services import get_outfit_on as service_get_outfit_on
 from src.models import GenerateOutfitOnRequest
 
 router = APIRouter(prefix="/api", tags=["try-on"])
@@ -39,7 +39,7 @@ async def download_try_on_image(
     contents = await product_image.read()
     product_image_pil = Image.open(BytesIO(contents))
     
-    result = Stylist.get_outfit_on(user_image_pil, product_image_pil)
+    result = service_get_outfit_on(user_image_pil, product_image_pil)
 
     buffer = BytesIO()
     result.save(buffer, format="PNG")
@@ -62,7 +62,7 @@ def get_outfit_on(request: GenerateOutfitOnRequest):
     Returns:
         JSON response with base64-encoded try-on image
     """
-    result_image = Stylist.get_outfit_on(request.user_image, request.product_image)
+    result_image = service_get_outfit_on(request.user_image, request.product_image)
 
     buffer = BytesIO()
     result_image.save(buffer, format="PNG")

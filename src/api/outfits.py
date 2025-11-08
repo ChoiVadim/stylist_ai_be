@@ -2,7 +2,11 @@
 Outfit-related API endpoints.
 """
 from fastapi import APIRouter
-import src.db as db
+from src.database.db import (
+    get_outfit_by_season as db_get_outfit_by_season,
+    get_outfit_by_category as db_get_outfit_by_category,
+    get_outfit_by_season_and_category as db_get_outfit_by_season_and_category,
+)
 
 router = APIRouter(prefix="/api/outfit", tags=["outfits"])
 
@@ -18,7 +22,7 @@ def get_outfit_by_season(season: str):
     Returns:
         List of outfit items matching the season
     """
-    return db.get_outfit_by_season(season)
+    return db_get_outfit_by_season(season)
 
 
 @router.get("/category/{category}")
@@ -32,7 +36,7 @@ def get_outfit_by_category(category: str):
     Returns:
         List of outfit items matching the category
     """
-    return db.get_outfit_by_category(category)
+    return db_get_outfit_by_category(category)
 
 
 @router.get("/season/{season}/category/{category}")
@@ -47,5 +51,5 @@ def get_outfit_by_season_and_category(season: str, category: str):
     Returns:
         List of outfit items matching both filters
     """
-    return db.get_outfit_by_season_and_category(season, category)
+    return db_get_outfit_by_season_and_category(season, category)
 

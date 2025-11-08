@@ -1,37 +1,15 @@
+"""
+Stylist service - color analysis and outfit try-on business logic.
+"""
 import json
-import base64
-from io import BytesIO
 from PIL import Image
 from google.genai import types
 
 from src.config import config
 from src.models import AnalyzeColorSeasonResponseModel
+from src.utils.image_utils import base64_to_image
 
 client = config.get_client()
-
-
-def base64_to_image(base64_string_or_data_url: str) -> Image.Image:
-    """
-    Convert a base64 string or data URL to a PIL Image object.
-
-    Args:
-        base64_string_or_data_url: Base64 string (with or without data URL prefix)
-
-    Returns:
-        PIL Image object
-    """
-    # Remove data URL prefix if present (e.g., "data:image/png;base64,")
-    if base64_string_or_data_url.startswith("data:"):
-        # Extract base64 part after the comma
-        base64_string_or_data_url = base64_string_or_data_url.split(",", 1)[1]
-
-    # Decode base64 string to bytes
-    image_data = base64.b64decode(base64_string_or_data_url)
-
-    # Create PIL Image from bytes
-    image = Image.open(BytesIO(image_data))
-
-    return image
 
 
 def get_your_color_season(
@@ -71,13 +49,34 @@ def get_your_color_season(
         response_text = response_text.strip()
 
         data = json.loads(response_text)
+        
+        # Provide defaults for missing fields
+        defaults = {
+            "undertone": "unknown",
+            "season": "unknown",
+            "subtype": "unknown",
+            "reasoning": ""
+        }
+        for key, default_value in defaults.items():
+            if key not in data or data[key] is None:
+                data[key] = default_value
+        
         model = AnalyzeColorSeasonResponseModel.model_validate(data)
         return model
 
     except json.JSONDecodeError as e:
-        raise ValueError(f"JSON decode error: {e}")
+        raise ValueError(f"JSON decode error: {e}. Response text: {response_text[:200]}")
     except Exception as e:
-        raise ValueError(f"Unexpected error: {e}")
+        # Log the actual data received for debugging
+        try:
+            data_str = json.dumps(data, indent=2) if 'data' in locals() else "No data parsed"
+        except:
+            data_str = "Could not serialize data"
+        raise ValueError(
+            f"Validation error: {e}\n"
+            f"Received data: {data_str}\n"
+            f"Response text (first 500 chars): {response_text[:500]}"
+        )
 
 
 def get_outfit_on(
@@ -89,6 +88,9 @@ def get_outfit_on(
     Args:
         user_image_input: Either a base64 string/data URL or a PIL Image object
         product_image_input: Either a base64 string/data URL or a PIL Image object
+    
+    Returns:
+        PIL Image object with the try-on result
     """
     prompt = config.NANO_BANANA_PROMPT
 
@@ -119,6 +121,7 @@ def get_outfit_on(
         if part.text is not None:
             print(part.text)
         elif part.inline_data is not None:
+            from io import BytesIO
             image = Image.open(BytesIO(part.inline_data.data))
-            # image.save("images/generated_image.png")
             return image
+
