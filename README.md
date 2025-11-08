@@ -63,62 +63,57 @@ StyleAI is an advanced AI-powered personal color analysis and fashion recommenda
 ### Prerequisites
 
 - Python 3.12+
-- API Keys for:
-  - Google Gemini AI
-  - OpenAI
-  - Anthropic Claude
+- API Keys: Google Gemini, OpenAI, Anthropic Claude
 
 ### Installation
 
-1. **Clone the repository**
-
 ```bash
-git clone <your-repo-url>
-cd hackseoul_fe
-```
+# 1. Clone and navigate
+cd hackseoul_be
 
-2. **Install dependencies with uv (recommended)**
-
-```bash
-# Install uv if you haven't
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Sync dependencies
-uv sync
-```
-
-Or with pip:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. **Configure environment variables**
-
-```bash
-# Create .env file
+# 2. Create .env file
 cat > .env << EOF
-GEMINI_API_KEY=your_gemini_key_here
-OPENAI_API_KEY=your_openai_key_here
-ANTHROPIC_API_KEY=your_anthropic_key_here
-SECRET_KEY=your_jwt_secret_key_here
+GEMINI_API_KEY=your_key_here
+OPENAI_API_KEY=your_key_here
+ANTHROPIC_API_KEY=your_key_here
+SECRET_KEY=your_jwt_secret
 EOF
+
+# 3. Install dependencies with uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv sync
+
+# 4. Run server
+uv run python3 app.py
 ```
 
-4. **Run the server**
+**API Available**: `http://localhost:8000/docs`
 
-```bash
-python app.py
-```
+---
 
-The API will be available at `http://localhost:8000`
+## 🎯 Key Technical Strategies
 
-### 🎯 Quick Test
+### 🔄 Ensemble Learning for Color Analysis
 
-Try the interactive API documentation:
+We use **multi-model ensemble** to achieve 90%+ accuracy:
 
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
+**Parallel Mode** (Recommended): All 3 AI models (Gemini, GPT-4o, Claude) analyze simultaneously, then aggregate results using:
+
+- **Voting**: Majority wins
+- **Weighted Average**: Confidence-based (best accuracy)
+- **Consensus**: Requires ≥67% agreement
+
+**Hybrid Mode** (Highest Accuracy): Two models analyze in parallel, third model acts as expert judge to evaluate and synthesize results.
+
+### 📸 Sequential Image Generation for Try-On
+
+For full outfit visualization (top + bottom + shoes), we use a **sequential strategy**:
+
+1. Generate user wearing **upper garment** → save result
+2. Use result as input + add **lower garment** → save result
+3. Use result as input + add **shoes** → final image
+
+This sequential approach ensures each item is properly layered and positioned, producing realistic outfit combinations vs. attempting all items at once.
 
 ---
 
@@ -436,103 +431,6 @@ Our system uses the **12-season color analysis model**, combining:
 
 ---
 
-## 🔧 Advanced Features
-
-### Confidence Calibration
-
-- Models are cross-validated against ground truth datasets
-- Confidence scores adjusted based on image quality
-- Automatic re-analysis triggers for low confidence (<0.7)
-
----
-
-
-
-## 📖 Code Examples
-
-### Python Client Example
-
-```python
-import requests
-import base64
-
-# Encode image to base64
-with open("selfie.jpg", "rb") as f:
-    image_data = base64.b64encode(f.read()).decode()
-
-# Analyze with ensemble
-response = requests.post(
-    "http://localhost:8000/api/analyze/color/ensemble/parallel",
-    params={"aggregation_method": "weighted_average"},
-    json={"image": f"data:image/jpeg;base64,{image_data}"}
-)
-
-result = response.json()
-print(f"Your color type: {result['personal_color_type']}")
-print(f"Confidence: {result['confidence']:.2%}")
-print(f"Reasoning: {result['reasoning']}")
-```
-
-### JavaScript/Fetch Example
-
-```javascript
-// Upload and analyze
-const fileInput = document.getElementById('photoInput');
-const file = fileInput.files[0];
-
-const reader = new FileReader();
-reader.onload = async (e) => {
-  const response = await fetch('/api/analyze/color/ensemble/parallel?aggregation_method=weighted_average', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ image: e.target.result })
-  });
-  
-  const result = await response.json();
-  console.log('Your personal color:', result.personal_color_type);
-};
-reader.readAsDataURL(file);
-```
-
-### cURL Example
-
-```bash
-# Encode image
-IMAGE_B64=$(base64 -i selfie.jpg)
-
-# Analyze
-curl -X POST "http://localhost:8000/api/analyze/color/ensemble/parallel?aggregation_method=weighted_average" \
-  -H "Content-Type: application/json" \
-  -d "{\"image\":\"data:image/jpeg;base64,$IMAGE_B64\"}"
-```
-
----
-
-## 🧪 Testing
-
-### Run Tests
-
-```bash
-python test.py
-```
-
-### Test with Sample Images
-
-```bash
-# Color analysis test
-python test.py
-
-# Expected output:
-# {
-#   "personal_color_type": "Deep Autumn",
-#   "confidence": 0.87,
-#   "undertone": "warm",
-#   ...
-# }
-```
-
----
-
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -557,7 +455,7 @@ python test.py
 ### Storage
 
 - **SQLite**: User data and preferences
-- **JSON**: Fashion item database and popularity tracking
+- **Spred Sheet**: Fashion item database and popularity tracking (temporary)
 
 ---
 
