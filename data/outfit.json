@@ -1,0 +1,186 @@
+[
+  {
+    "season": "autumn_soft",
+    "outfit_id": "autumn_soft_03",
+    "occasion": "casual coffee date",
+    "temperatureC": 15,
+    "items": [
+      {
+        "category": "overshirt",
+        "name": "Fake Suede Overshirt (Olive)",
+        "colorHex": "#6B8E23",
+        "seasonTag": "autumn",
+        "priceKRW": 89900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3-%E1%84%89%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3-%E1%84%8B%E1%85%A9%E1%84%87%E1%85%A5%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p03046500.html",
+        "imageUrl": "https://static.zara.net/assets/public/74a0/b3d4/bac8496f98d3/007cde2481bf/03046500515-e1/03046500515-e1.jpg?ts=1753780325534&w=1280"
+      },
+      {
+        "category": "t-shirt",
+        "name": "SUPIMA® Cotton T-Shirt (Dark Brown)",
+        "colorHex": "#4E3B31",
+        "seasonTag": "autumn",
+        "priceKRW": 49900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%89%E1%85%AE%E1%84%91%E1%85%B5%E1%84%86%E1%85%A1--%E1%84%8F%E1%85%A9%E1%84%90%E1%85%B3%E1%86%AB-%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p03431300.html",
+        "imageUrl": "https://static.zara.net/assets/public/460a/4d68/194d4bf89cb7/7282825a8404/03431300716-e1/03431300716-e1.jpg?ts=1752144317167&w=1280"
+      },
+      {
+        "category": "trousers",
+        "name": "Comfort Suit Trousers (Brown)",
+        "colorHex": "#4A3B2A",
+        "seasonTag": "autumn",
+        "priceKRW": 79900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%A9%E1%84%90%E1%85%B3-%E1%84%89%E1%85%AE%E1%84%90%E1%85%B3-%E1%84%91%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B3-p09621320.html",
+        "imageUrl": "https://static.zara.net/assets/public/da8c/95f8/62274311a8c1/ecf9aeb06a3b/09621320700-e1/09621320700-e1.jpg?ts=1761730300887&w=1280"
+      },
+      {
+        "category": "shoes",
+        "name": "Leather Loafers (Beige Suede)",
+        "colorHex": "#B39B7A",
+        "seasonTag": "autumn",
+        "priceKRW": 69900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%85%E1%85%A6%E1%84%83%E1%85%A5-%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5-p12603620.html",
+        "imageUrl": "https://static.zara.net/assets/public/d493/c58e/2daf4b15a5ae/d2d968ade868/12603620102-e2/12603620102-e2.jpg?ts=1746518609884&w=1280"
+      }
+    ],
+    "stylingNotes": "Muted olive + warm browns = Soft Autumn harmony. At 15°C, wear the olive overshirt closed or open over the tee; cuff sleeves lightly. Add a brown belt and a simple watch if you like a touch more polish.",
+    "totalPriceKRW": 299600
+  },
+
+  {
+  "season": "warm_autumn",
+  "occasion": "casual coffee date",
+  "weatherCelsius": 15,
+  "outfitId": "warm-autumn-03",
+  "items": [
+    {
+      "category": "overshirt",
+      "name": "Faux Suede Overshirt - Olive",
+      "colorHex": "#6B8E23",
+      "seasonTag": ["autumn", "warm"],
+      "priceKRW": 89900,
+      "productUrl": "https://www.zara.com/kr/ko/%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3-%E1%84%89%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3-%E1%84%8B%E1%85%A9%E1%84%87%E1%85%A5%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p03046500.html",
+      "imageUrl": "https://static.zara.net/assets/public/21f0/e711/5b4148f995ac/14eedad22989/03046500515-p/03046500515-p.jpg"
+    },
+    {
+      "category": "tshirt",
+      "name": "Cotton Texture T-Shirt - Brown",
+      "colorHex": "#5A3E36",
+      "seasonTag": ["autumn", "warm"],
+      "priceKRW": 49900,
+      "productUrl": "https://www.zara.com/kr/ko/%E1%84%8F%E1%85%A9%E1%84%90%E1%85%B3%E1%86%AB-%E1%84%90%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%8E%E1%85%A5-%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p05644340.html",
+      "imageUrl": "https://static.zara.net/assets/public/836e/6c10/09094e42b101/1e6caececede/05644340700-p/05644340700-p.jpg"
+    },
+    {
+      "category": "trousers",
+      "name": "Comfort Suit Trousers - Brown",
+      "colorHex": "#3B2F2F",
+      "seasonTag": ["autumn", "warm"],
+      "priceKRW": 79900,
+      "productUrl": "https://www.zara.com/kr/ko/%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%A9%E1%84%90%E1%85%B3-%E1%84%89%E1%85%AE%E1%84%90%E1%85%B3-%E1%84%91%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B3-p09621320.html",
+      "imageUrl": "https://static.zara.net/assets/public/6660/db14/3b2a4a1baccc/56e6437f02ee/09621320700-p/09621320700-p.jpg"
+    },
+    {
+      "category": "loafers",
+      "name": "Leather Loafers (Suede Finish) - Beige",
+      "colorHex": "#D2B48C",
+      "seasonTag": ["autumn", "warm"],
+      "priceKRW": 129900,
+      "productUrl": "https://www.zara.com/kr/ko/%E1%84%80%E1%85%A1%E1%84%8C%E1%85%AE%E1%86%A8-%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5-p12655620.html",
+      "imageUrl": "https://static.zara.net/assets/public/a6cd/4124/66b545019fdd/44ff8bd30464/12655620102-a2/12655620102-a2.jpg"
+    }
+  ],
+  "stylingNotes": "Layer the olive overshirt over the brown tee; half-tuck the tee into the tailored brown trousers for shape. Pair with beige suede-finish loafers and no-show socks. Add a lightweight scarf if it's breezy."
+  },
+  {
+    "season": "autumn_warm",
+    "outfitId": "warm-autumn-03b",
+    "occasion": "casual coffee date",
+    "temperatureC": 15,
+    "paletteNote": "golden camel, rust, olive, dark brown",
+    "items": [
+       {
+        "category": "tee",
+        "name": "MEDIUM WEIGHT (white)",
+        "colorHex": "#F5F5F5",
+        "season": "autumn",
+        "priceKRW": 29900,
+        "productUrl": "https://www.zara.com/kr/ko/medium-weight-%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%86%A8-%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p01887470.html",
+        "imageUrl": "https://static.zara.net/assets/public/4b78/86bf/5b864dd990c7/9c105eee4c07/01887470250-510-p/01887470250-510-p.jpg"
+
+        },
+          
+      {
+        "category": "knit",
+        "name": "Rib Knit Sweater (Brown/Rust)",
+        "colorHex": "#B3572C",
+        "seasonTag": ["autumn", "warm"],
+        "priceKRW": 89900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%85%E1%85%B5%E1%84%87%E1%85%B3%E1%84%83%E1%85%B3-%E1%84%90%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3-%E1%84%89%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%90%E1%85%A5-p03920160.html?v1=463744851",
+        "imageUrl": "https://static.zara.net/assets/public/1448/fd02/ac4a4a15a6ef/4d7497b02b9f/03920160700-e1/03920160700-e1.jpg?ts=1760000470791&w=1280"
+      },
+      {
+        "category": "trousers",
+        "name": "Slim-Fit Chinos (Dark Green/Olive)",
+        "colorHex": "#3A4A2A",
+        "seasonTag": ["autumn", "warm"],
+        "priceKRW": 89900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%8B%E1%85%AA%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%E1%84%91%E1%85%B5%E1%86%BA-%E1%84%8E%E1%85%B5%E1%84%82%E1%85%A9-%E1%84%91%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B3-p01195370.html?v1=474537458&v2=2432064",
+        "imageUrl": "https://static.zara.net/assets/public/2c02/6f59/d79e4d9d9e48/d5cfee555408/01195370505-e1/01195370505-e1.jpg?ts=1758810118489&w=1280"
+      },
+      {
+        "category": "boots",
+        "name": "Volume Chelsea Boots (Brown)",
+        "colorHex": "#5A3A1E",
+        "seasonTag": ["autumn", "warm"],
+        "priceKRW": 99900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%87%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B2%E1%86%B7-%E1%84%8E%E1%85%A6%E1%86%AF%E1%84%89%E1%85%B5-%E1%84%87%E1%85%AE%E1%84%8E%E1%85%B3-p12051620.html",
+        "imageUrl": "https://static.zara.net/assets/public/9637/779f/f0d74ebda4d3/2cc9e7bb72cc/12051620700-e1/12051620700-e1.jpg?ts=1758193473182&w=1700"
+      }
+    ],
+    "stylingNotes": "Warm Autumn contrast: rust knit + brown checked corduroy overshirt, olive chinos, brown Chelsea boots. At ~15 °C, wear the knit solo indoors and add the corduroy shacket outside. Optional: camel scarf, brown leather watch."
+  },
+  {
+    "season": "autumn-dark",
+    "occasion": "casual coffee date (~15°C)",
+    "outfitName": "Dark Olive Trench + Indigo Knit + Brown Trousers + Chelsea Boots",
+    "items": [
+      {
+        "category": "outerwear",
+        "name": "Waxed Trench with Cord Collar (Dark Khaki)",
+        "colorHex": "#4A4F3D",
+        "priceKRW": 189900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%8B%E1%85%AA%E1%86%A8%E1%84%89%E1%85%B3-%E1%84%8F%E1%85%A9%E1%84%90%E1%85%B5%E1%86%BC-%E1%84%8F%E1%85%A9%E1%84%90%E1%85%B3-p03286203.html",
+        "imageUrl": "https://static.zara.net/assets/public/4786/a487/76cb42aa8960/e6243c86d866/03286203507-e1/03286203507-e1.jpg?ts=1758531148707&w=1280",
+        "seasonTag": "autumn"
+      },
+      {
+        "category": "knitwear",
+        "name": "Textured Knit Cardigan (Indigo)",
+        "colorHex": "#2C3E50",
+        "priceKRW": 89900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%90%E1%85%A5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5-%E1%84%82%E1%85%B5%E1%84%90%E1%85%B3-%E1%84%80%E1%85%A1%E1%84%83%E1%85%B5%E1%84%82%E1%85%A5%E1%86%AB-p03166331.html",
+        "imageUrl": "https://static.zara.net/assets/public/f30a/650d/2edb46bd93b6/6bd44350ff72/03166331405-e1/03166331405-e1.jpg?ts=1761812027834&w=1280",
+        "seasonTag": "autumn"
+      },
+      {
+        "category": "trousers",
+        "name": "Comfort Suit Trousers (Dark Brown)",
+        "colorHex": "#5A4633",
+        "priceKRW": 59900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%80%E1%85%A9%E1%84%86%E1%85%B3%E1%84%90%E1%85%B3-%E1%84%89%E1%85%AE%E1%84%90%E1%85%B3-%E1%84%90%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%AB-%E1%84%87%E1%85%A1%E1%84%8C%E1%85%B5-p09621320.html",
+        "imageUrl": "https://static.zara.net/assets/public/da8c/95f8/62274311a8c1/ecf9aeb06a3b/09621320700-e1/09621320700-e1.jpg?ts=1761730300887&w=1280",
+        "seasonTag": "autumn"
+      },
+      {
+        "category": "shoes",
+        "name": "Leather Chelsea Boots (Sand Brown)",
+        "colorHex": "#8B5E3B",
+        "priceKRW": 99900,
+        "productUrl": "https://www.zara.com/kr/ko/%E1%84%85%E1%85%A6%E1%84%83%E1%85%A5-%E1%84%8E%E1%85%A6%E1%86%AF%E1%84%89%E1%85%B5-%E1%84%87%E1%85%AE%E1%84%8E%E1%85%B3-p12014620.html",
+        "imageUrl": "https://static.zara.net/assets/public/d7ab/e20d/bf8048e0b4b2/1b80e456fb47/12014621700-e1/12014621700-e1.jpg?ts=1757063831582&w=375",
+        "seasonTag": "autumn"
+      }
+    ],
+    "notes": "Layer the indigo knit under the dark khaki waxed trench; the deep brown trousers and sand-brown Chelsea boots keep the palette rich and muted for Dark Autumn. Add a scarf or tee in warm cream if you need an extra layer indoors."
+  }
+]

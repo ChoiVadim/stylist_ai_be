@@ -9,12 +9,39 @@ from fastapi.responses import StreamingResponse
 from PIL import Image
 from io import BytesIO
 
+import src.db as db
+
 app = fastapi.FastAPI()
+
 
 
 @app.get("/")
 def read_root():
-    return {"message": "Lets win Hack Seoul! I need more money, please im broke!"}
+    """
+    Fun 
+    """
+    return {"message": "Let`s win Hack Seoul! I need more money, please im broke!"}
+
+@app.get("/api/outfit/season/{season}")
+def get_outfit_by_season(season: str):
+    """
+    Function to get outfits by season from the database.
+    """
+    return db.get_outfit_by_season(season)
+
+@app.get("/api/outfit/category/{category}")
+def get_outfit_by_category(category: str):
+    """
+    Function to get outfits by category from the database.
+    """
+    return db.get_outfit_by_category(category)
+
+@app.get("/api/outfit/season/{season}/category/{category}")
+def get_outfit_by_season_and_category(season: str, category: str):
+    """
+    Function to get outfits by season and category from the database.
+    """
+    return db.get_outfit_by_season_and_category(season, category)
 
 @app.post("/api/test/analyze/color")
 async def test_upload_image(file: UploadFile = File(...)):
@@ -36,6 +63,9 @@ async def test_upload_image(file: UploadFile = File(...)):
     },
 )
 async def download_try_on_image(user_image: UploadFile = File(...), product_image: UploadFile = File(...)):
+    """
+    Function to generate a try-on image.
+    """
     contents = await user_image.read()
     user_image = Image.open(BytesIO(contents))
     contents = await product_image.read()
@@ -52,7 +82,7 @@ async def download_try_on_image(user_image: UploadFile = File(...), product_imag
 @app.post("/api/analyze/color")
 def get_color_season(request: AnalyzeColorSeasonRequest):
     """
-    Analyze color season from an image.
+    Function to analyze color season from an image.
 
     Request body should contain:
     {
@@ -69,7 +99,7 @@ def get_color_season(request: AnalyzeColorSeasonRequest):
 @app.post("/api/try-on/generate")
 def get_outfit_on(request: GenerateOutfitOnRequest):
     """
-    Generate outfit try-on image.
+    Function to generate a try-on image.
 
     Request body should contain:
     {
