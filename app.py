@@ -4,30 +4,50 @@ import uvicorn
 import src.stylist as Stylist
 from src.models import AnalyzeColorSeasonRequest, GenerateOutfitOnRequest
 from fastapi import UploadFile, File
+from fastapi.responses import StreamingResponse
+
+from PIL import Image
+from io import BytesIO
 
 app = fastapi.FastAPI()
 
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello, World!"}
+    return {"message": "Lets win Hack Seoul! I need more money, please im broke!"}
 
-@app.post("/api/test/upload")
+@app.post("/api/test/analyze/color")
 async def test_upload_image(file: UploadFile = File(...)):
-    """
-    Test endpoint to upload an image file.
-    You can test this directly in FastAPI docs!
-    """
-    # Read the uploaded file
     contents = await file.read()
-    
-    # You can process it with PIL if needed
-    from PIL import Image
-    from io import BytesIO
-    
     image = Image.open(BytesIO(contents))
-    
     return Stylist.get_your_color_season(image).model_dump()
+
+@app.post(
+    "/api/test/try-on/generate",
+    responses={
+        200: {
+            "content": {
+                "image/png": {
+                    "schema": {"type": "string", "format": "binary"}
+                }
+            },
+            "description": "Returns the generated try-on PNG image",
+        }
+    },
+)
+async def download_try_on_image(user_image: UploadFile = File(...), product_image: UploadFile = File(...)):
+    contents = await user_image.read()
+    user_image = Image.open(BytesIO(contents))
+    contents = await product_image.read()
+    product_image = Image.open(BytesIO(contents))
+    result = Stylist.get_outfit_on(user_image, product_image)
+
+    buffer = BytesIO()
+    result.save(buffer, format="PNG")
+    buffer.seek(0)
+    headers = {"Content-Disposition": 'attachment; filename="try_on.png"'}
+    return StreamingResponse(buffer, media_type="image/png", headers=headers)
+
 
 @app.post("/api/analyze/color")
 def get_color_season(request: AnalyzeColorSeasonRequest):
