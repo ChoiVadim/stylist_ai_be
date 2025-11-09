@@ -4,6 +4,12 @@
 
 A prototype platform demonstrating how AI ensemble learning can analyze personal color seasons and provide fashion recommendations using multiple state-of-the-art AI models.
 
+## 📖 API Documentation
+
+**Live API Documentation**: [https://stylist-ai-be.onrender.com/docs](https://stylist-ai-be.onrender.com/docs)
+
+Interactive API documentation with Swagger UI - explore all endpoints, test requests, and view schemas.
+
 ---
 
 ## 📝 Summary
@@ -17,6 +23,7 @@ StylerX is a prototype AI-powered personal color analysis and fashion recommenda
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Docker and Docker Compose
 - API Keys: Google Gemini, OpenAI, Anthropic Claude
 
@@ -36,7 +43,8 @@ EOF
 docker-compose up -d
 
 # 3. Access API docs
-# http://localhost:8000/docs
+# Local: http://localhost:8000/docs
+# Production: https://stylist-ai-be.onrender.com/docs
 ```
 
 ---
@@ -44,17 +52,20 @@ docker-compose up -d
 ## 📚 API Routes
 
 ### Authentication
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login and get JWT token
 - `GET /api/auth/me` - Get current user info
 
 ### Color Analysis
+
 - `POST /api/analyze/color` - Single model color analysis (fast)
 - `POST /api/analyze/color/ensemble/parallel` - Parallel ensemble (3 models analyze simultaneously)
 - `POST /api/analyze/color/ensemble/hybrid` - Hybrid ensemble (2 models + 1 judge)
 - `GET /api/color/palette/{season}` - Get color palette for a season
 
 ### Fashion Recommendations
+
 - `GET /api/outfit/season/{season}` - Get outfits by color season
 - `GET /api/outfit/category/{category}` - Get outfits by category (t-shirts, trousers, etc.)
 - `GET /api/outfit/season/{season}/category/{category}` - Personalized recommendations
@@ -63,19 +74,23 @@ docker-compose up -d
 - `POST /api/outfit/score` - Score outfit compatibility
 
 ### Virtual Try-On
+
 - `POST /api/try-on/generate` - Generate try-on image (user + product)
 - `POST /api/try-on/generate-full-outfit` - Generate full outfit try-on
 - `POST /api/try-on/generate-full-outfit/on-sequential` - Sequential outfit generation (top → bottom → shoes)
 
 ### Body & Face Analysis
+
 - `POST /api/shape/face` - Analyze face shape
 - `POST /api/shape/body` - Analyze body shape
 
 ### Beauty Recommendations
+
 - `POST /api/beauty/makeup` - Get makeup recommendations based on color season
 - `POST /api/beauty/hair` - Get hair color recommendations
 
 ### User Profile
+
 - `GET /api/user/profile` - Get user profile
 - `POST /api/user/profile` - Create user profile
 - `PUT /api/user/profile` - Update user profile
@@ -83,12 +98,14 @@ docker-compose up -d
 - `GET /api/user/profile/completeness` - Get profile completeness score
 
 ### User Color History
+
 - `POST /api/user/color/save` - Save color analysis result
 - `GET /api/user/color/results` - Get all color analysis history
 - `GET /api/user/color/latest` - Get latest color analysis
 - `DELETE /api/user/color/results/{result_id}` - Delete a result
 
 ### User Outfits
+
 - `POST /api/user/outfits/like` - Like an outfit
 - `DELETE /api/user/outfits/like/{item_id}` - Unlike an outfit
 - `GET /api/user/outfits/liked` - Get all liked outfits
@@ -101,6 +118,7 @@ docker-compose up -d
 ### Ensemble Learning for Color Analysis
 
 **Parallel Mode**: All 3 AI models (Gemini, GPT-4o, Claude) analyze simultaneously, then aggregate results using:
+
 - **Voting**: Majority wins
 - **Weighted Average**: Confidence-based (best accuracy)
 - **Consensus**: Requires ≥67% agreement
@@ -110,6 +128,7 @@ docker-compose up -d
 ### Sequential Image Generation for Try-On
 
 For full outfit visualization (top + bottom + shoes), we use sequential strategy:
+
 1. Generate user wearing **upper garment** → save result
 2. Use result as input + add **lower garment** → save result
 3. Use result as input + add **shoes** → final image
