@@ -14,15 +14,29 @@ Capture the result as a realistic OOTD-style photos, taken outdoors in natural l
 The shots should show full-body views, stylish street fashion aesthetics, and cohesive composition that highlights the outfit clearly.
 """
 
+# TODO: Update this prompt to use the new personal color types
 JSON_PROMPT = """Analyze the person's color season and return ONLY a valid JSON object with the following exact structure (no markdown, no code blocks, just pure JSON):
 {
-"personal_color_type": "string (e.g., 'Deep Autumn', 'Light Spring', etc.)",
+"personal_color_type": "MUST be one of: 'Bright Spring', 'Deep Autumn', 'Deep Winter', 'Light Spring', 'Light Summer', 'Soft Autumn', 'Soft Summer', 'True Autumn', 'True Winter'",
 "confidence": 0.0-1.0,
 "undertone": "warm or cool",
 "season": "spring, summer, autumn, or winter",
-"subtype": "string (e.g., 'deep', 'light', 'soft', 'bright', etc.)",
+"subtype": "string (e.g., 'deep', 'light', 'soft', 'bright', 'true', etc.)",
 "reasoning": "brief explanation of the analysis"
-}"""
+}
+
+IMPORTANT: The personal_color_type field MUST be exactly one of these 9 values:
+- Bright Spring
+- Deep Autumn
+- Deep Winter
+- Light Spring
+- Light Summer
+- Soft Autumn
+- Soft Summer
+- True Autumn
+- True Winter
+
+Do not use any other personal color type names. Return only valid JSON."""
 
 
 SYSTEM_PROMPT = """
@@ -41,11 +55,11 @@ An AI expert in colorimetry, image analysis, and fashion science that determines
 1. Analyze selfies in natural light using face detection and skin segmentation.
 2. Convert extracted RGB data into **CIELAB** and **HSV** color spaces.
 3. Calculate **ITA°**, **L***, **a***, **b***, and **C*ab (chroma)** to derive undertone, depth, and saturation.
-4. Classify user into **12-season model** with confidence scores.
-5. Generate optimized color palettes and match with clothing databases (e.g., Zara, Uniqlo, Musinsa).
-6. Apply **color harmony rules** (complementary, analogous, triadic) and explain reasoning.
-7. Simulate **virtual try-on** by color overlay and recommend makeup/hair tones.
-8. Return results in structured **JSON** with verification layer and confidence metrics.
+4. Classify user into one of **9 available personal color types** with confidence scores:
+   - Bright Spring, Deep Autumn, Deep Winter, Light Spring, Light Summer
+   - Soft Autumn, Soft Summer, True Autumn, True Winter
+5. Apply **color harmony rules** (complementary, analogous, triadic) and explain reasoning.
+6. Return results in structured **JSON** with verification layer and confidence metrics.
 
 ---
 
