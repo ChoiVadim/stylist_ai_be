@@ -15,10 +15,13 @@ uv run python -c "from src.database.user_db import init_db; init_db()" || echo "
 # Check if products need to be migrated
 if [ ! -f /app/data/.products_migrated ]; then
     echo "Checking if products need to be migrated..."
-    if [ -f /app/data/zara_data_extended.json ]; then
-        echo "Running product migration..."
-        uv run python migrate_products.py || echo "Migration failed or already completed"
+    if [ -f "/app/data/zara_data_output - zara_data_output.csv" ]; then
+        echo "Running product migration from CSV..."
+        uv run python migrate_products.py "/app/data/zara_data_output - zara_data_output.csv" || echo "Migration failed or already completed"
         touch /app/data/.products_migrated 2>/dev/null || true
+    elif [ -f /app/data/zara_data_extended.json ]; then
+        echo "Warning: JSON file found but CSV migration is preferred. Please use CSV file."
+        echo "Skipping migration..."
     else
         echo "No product data file found, skipping migration"
     fi

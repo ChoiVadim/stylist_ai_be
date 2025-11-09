@@ -73,7 +73,7 @@ docker run -d \
 
 The entrypoint script automatically:
 1. Initializes the database on startup
-2. Runs product migration if `zara_data_extended.json` exists and hasn't been migrated yet
+2. Runs product migration if `zara_data_output - zara_data_output.csv` exists and hasn't been migrated yet
 
 To manually run migrations:
 
@@ -81,14 +81,14 @@ To manually run migrations:
 # Run database initialization
 docker exec hackseoul-api python -c "from src.database.user_db import init_db; init_db()"
 
-# Run product migration
-docker exec hackseoul-api python migrate_products.py
+# Run product migration from CSV
+docker exec hackseoul-api python migrate_products.py "/app/data/zara_data_output - zara_data_output.csv"
 ```
 
 ## Data Persistence
 
 The following directories are mounted as volumes to persist data:
-- `./data` - Database and JSON files
+- `./data` - Database and CSV files
 - `./images` - Image files
 
 Make sure these directories exist and have proper permissions.
@@ -111,8 +111,9 @@ Once the container is running, access:
 - Verify database file permissions
 
 ### Migration issues
-- Ensure `zara_data_extended.json` exists in `./data` directory
+- Ensure `zara_data_output - zara_data_output.csv` exists in `./data` directory
 - Check container logs for migration errors
+- CSV file should have columns: colorHex, colorName, description, detailDescription, id, imageUrl, personalColorType, price, productUrl, type
 
 ## Production Considerations
 

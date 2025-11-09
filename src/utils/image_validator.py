@@ -26,7 +26,7 @@ class ImageValidationError(Exception):
 
 # Default validation constraints
 DEFAULT_MAX_SIZE_MB = 10  # Maximum file size in MB
-DEFAULT_MAX_DIMENSION = 4096  # Maximum width or height in pixels
+DEFAULT_MAX_DIMENSION = 6048  # Maximum width or height in pixels
 DEFAULT_MIN_DIMENSION = 100  # Minimum width or height in pixels
 ALLOWED_FORMATS = {"JPEG", "PNG", "JPG", "WEBP"}
 

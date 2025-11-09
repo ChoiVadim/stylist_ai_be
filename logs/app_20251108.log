@@ -30,3 +30,418 @@
 2025-11-08 20:36:24 - hackseoul.app - DEBUG - [app.py:101] - read_root() - Health check endpoint accessed
 2025-11-08 20:36:24 - hackseoul.app - INFO - [app.py:69] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
 2025-11-08 20:36:28 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-08 21:35:45 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-08 21:35:45 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-08 21:35:46 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-08 21:35:46 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-08 21:35:46 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-08 21:35:46 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-08 21:35:46 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-08 21:35:46 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-08 21:35:49 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:35:49 - hackseoul.app - DEBUG - [app.py:110] - read_root() - Health check endpoint accessed
+2025-11-08 21:35:49 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:36:19 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:36:19 - hackseoul.app - DEBUG - [app.py:110] - read_root() - Health check endpoint accessed
+2025-11-08 21:36:19 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 21:38:55 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-08 21:38:55 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-08 21:38:58 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-08 21:38:58 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-08 21:38:58 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-08 21:38:58 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-08 21:38:58 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-08 21:38:58 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-08 21:39:27 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:39:27 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:39:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 172.217.174.106
+2025-11-08 21:39:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 21:39:35 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 172.217.174.106
+2025-11-08 21:39:35 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.003s
+2025-11-08 21:39:35 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 172.217.174.106
+2025-11-08 21:39:35 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.036s
+2025-11-08 21:39:57 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:39:57 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 21:40:27 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:40:27 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 21:40:54 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/color/palette/Deep Autumn - Client: 172.217.174.106
+2025-11-08 21:40:54 - hackseoul.api.color - INFO - [color.py:430] - get_color_palette() - Get color palette request: season=Deep Autumn
+2025-11-08 21:40:54 - hackseoul.api.color - INFO - [color.py:438] - get_color_palette() - Found palette for season=Deep Autumn
+2025-11-08 21:40:54 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/color/palette/Deep Autumn - Status: 200 - Time: 0.006s
+2025-11-08 21:40:58 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:40:58 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:41:28 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:41:28 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:41:58 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:41:58 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:42:28 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:42:28 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:42:58 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:42:58 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.010s
+2025-11-08 21:43:29 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:43:29 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:43:59 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:43:59 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:44:29 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:44:29 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:45:00 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:45:00 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:45:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:45:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 21:46:00 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:46:00 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:46:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:46:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:47:00 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:47:00 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 21:47:31 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:47:31 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:48:01 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:48:01 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:48:31 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:48:31 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:49:01 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:49:01 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:49:31 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:49:31 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:50:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:50:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:50:32 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:50:32 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 21:51:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:51:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:51:32 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:51:32 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:52:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:52:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 21:52:33 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:52:33 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 21:53:03 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:53:03 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 21:53:33 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 21:53:33 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.007s
+2025-11-08 22:11:00 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 22:11:00 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.007s
+2025-11-08 23:12:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:12:04 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:12:34 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:12:34 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:13:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:13:04 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:13:35 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:13:35 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 23:14:05 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:14:05 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:14:35 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:14:35 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.008s
+2025-11-08 23:15:05 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:15:05 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:15:36 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:15:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 23:16:06 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:16:06 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:16:36 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:16:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.007s
+2025-11-08 23:17:06 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:17:06 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:17:36 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:17:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:18:07 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:18:07 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:18:37 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:18:37 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:19:07 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:19:07 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:19:37 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:19:37 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:20:07 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:20:07 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:20:38 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:20:38 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:21:08 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:21:08 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 23:21:38 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:21:38 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:22:08 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:22:08 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:22:38 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:22:38 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:23:09 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:23:09 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:23:39 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:23:39 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:24:09 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:24:09 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:24:39 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:24:39 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:25:09 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:25:10 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:25:40 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:25:40 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:26:10 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:26:10 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:26:40 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:26:40 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.008s
+2025-11-08 23:27:10 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:27:10 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:27:41 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:27:41 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:28:11 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:28:11 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:28:41 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:28:41 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:29:11 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:29:11 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:29:41 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:29:41 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:30:12 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:30:12 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:30:42 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:30:42 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:31:12 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:31:12 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:31:42 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:31:42 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:32:12 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:32:12 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:32:22 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 172.217.174.106
+2025-11-08 23:32:22 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.004s
+2025-11-08 23:32:22 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 172.217.174.106
+2025-11-08 23:32:22 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.005s
+2025-11-08 23:32:43 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:32:43 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:33:13 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:33:13 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:33:43 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:33:43 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:34:13 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:34:13 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:34:43 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:34:43 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:35:14 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:35:14 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:35:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:35:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:36:14 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:36:14 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:36:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:36:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:37:15 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:37:15 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:37:45 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:37:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:37:51 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 172.217.174.106
+2025-11-08 23:37:51 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:37:54 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 172.217.174.106
+2025-11-08 23:37:54 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.004s
+2025-11-08 23:37:55 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 172.217.174.106
+2025-11-08 23:37:55 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.005s
+2025-11-08 23:38:15 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:38:15 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:38:24 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: POST /api/test/analyze/color - Client: 172.217.174.106
+2025-11-08 23:38:24 - hackseoul.api.color - INFO - [color.py:34] - test_upload_image() - Test color analysis request received (file upload)
+2025-11-08 23:38:24 - hackseoul.utils.image_validator - WARNING - [image_validator.py:120] - detect_face_opencv() - OpenCV not available, skipping face detection
+2025-11-08 23:38:36 - hackseoul.api.color - INFO - [color.py:54] - test_upload_image() - Test color analysis completed: season=Bright Spring, confidence=0.88, time=11.86s
+2025-11-08 23:38:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: POST /api/test/analyze/color - Status: 200 - Time: 11.880s
+2025-11-08 23:38:45 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:38:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:39:15 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:39:15 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:39:46 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:39:46 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:40:16 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:40:16 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:40:46 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:40:46 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:41:16 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:41:16 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:41:46 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:41:46 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:42:17 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:42:17 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:42:47 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:42:47 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.012s
+2025-11-08 23:43:17 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:43:17 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:43:47 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:43:47 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:44:17 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:44:17 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:44:48 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:44:48 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:45:18 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:45:18 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:45:48 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:45:48 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:46:18 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:46:18 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:46:49 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:46:49 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:47:19 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:47:19 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:47:49 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:47:49 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-08 23:48:19 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:48:19 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:48:49 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:48:49 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:49:20 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:49:20 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:49:50 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:49:50 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:50:20 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:50:20 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:50:50 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:50:50 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:51:21 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:51:21 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:51:51 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:51:51 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:52:21 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:52:21 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-08 23:52:51 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:52:51 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:53:22 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:53:22 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:53:52 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:53:52 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:54:22 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:54:22 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:54:52 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:54:52 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:55:22 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:55:22 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:55:53 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:55:53 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 23:56:23 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:56:23 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-08 23:56:53 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:56:53 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-08 23:57:23 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:57:23 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:57:54 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:57:54 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-08 23:58:24 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:58:24 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:58:54 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:58:54 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.008s
+2025-11-08 23:59:24 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:59:24 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-08 23:59:54 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-08 23:59:54 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.007s
+2025-11-09 00:00:25 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:00:25 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:00:55 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:00:55 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:01:25 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:01:25 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:01:55 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:01:55 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:02:25 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:02:25 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:02:56 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:02:56 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.005s
+2025-11-09 00:03:26 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:03:26 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:03:56 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:03:56 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-09 00:04:26 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:04:26 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:04:57 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:04:57 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:05:27 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:05:27 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:05:57 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:05:57 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-09 00:06:27 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:06:27 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:06:57 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:06:57 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:07:28 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:07:28 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:07:58 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:07:58 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:08:28 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:08:28 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:08:58 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:08:58 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:09:28 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:09:28 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:09:59 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:09:59 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:10:29 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:10:29 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:10:59 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:10:59 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:11:29 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:11:29 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:11:59 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:11:59 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-09 00:12:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:12:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:13:00 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:13:00 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:13:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:13:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:14:00 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:14:00 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-09 00:14:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:14:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:15:01 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:15:01 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:15:31 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:15:31 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:16:01 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:16:01 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-09 00:16:31 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:16:31 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:17:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:17:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-09 00:17:32 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:17:32 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:18:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:18:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:18:32 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:18:32 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-09 00:19:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:19:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:19:33 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:19:33 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:20:03 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:20:03 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.008s
+2025-11-09 00:20:33 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:20:33 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:21:03 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:21:03 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:21:33 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:21:33 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:22:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:22:04 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-09 00:22:34 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:22:34 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-09 00:23:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:23:04 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:23:34 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:23:34 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:24:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:24:04 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:24:35 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:24:35 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:25:05 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:25:05 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:25:35 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:25:35 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:26:05 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:26:05 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:26:36 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:26:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:27:06 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:27:06 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.010s
+2025-11-09 00:27:36 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:27:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.010s
+2025-11-09 00:28:06 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:28:06 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:28:36 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:28:36 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.004s
+2025-11-09 00:29:07 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:29:07 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s

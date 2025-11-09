@@ -2,3 +2,15 @@
 2025-11-09 05:30:35 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
 2025-11-09 05:30:40 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
 2025-11-09 05:30:40 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-09 09:25:46 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-09 09:25:46 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-09 09:25:46 - hackseoul.migrate_products - INFO - [migrate_products.py:36] - migrate_products_from_csv() - Reading products from CSV: data/zara_data_output - zara_data_output.csv
+2025-11-09 09:25:46 - hackseoul.migrate_products - INFO - [migrate_products.py:84] - migrate_products_from_csv() - Migration completed: 0 products migrated, 132 skipped
+2025-11-09 09:28:35 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-09 09:28:35 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-09 09:28:35 - hackseoul.migrate_products - INFO - [migrate_products.py:41] - migrate_products_from_csv() - Clearing all existing products...
+2025-11-09 09:28:35 - hackseoul.migrate_products - INFO - [migrate_products.py:44] - migrate_products_from_csv() - Cleared 480 existing products
+2025-11-09 09:28:35 - hackseoul.migrate_products - INFO - [migrate_products.py:46] - migrate_products_from_csv() - Reading products from CSV: data/zara_data_output - zara_data_output.csv
+2025-11-09 09:28:35 - hackseoul.migrate_products - INFO - [migrate_products.py:102] - migrate_products_from_csv() - Migrated 50 products so far...
+2025-11-09 09:28:35 - hackseoul.migrate_products - INFO - [migrate_products.py:102] - migrate_products_from_csv() - Migrated 100 products so far...
+2025-11-09 09:28:35 - hackseoul.migrate_products - INFO - [migrate_products.py:111] - migrate_products_from_csv() - Migration completed: 132 products migrated, 0 updated, 0 skipped
