@@ -1,0 +1,71 @@
+2025-11-30 14:03:47 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 14:03:47 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 14:03:47 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-30 14:03:47 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-30 14:03:47 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 14:03:47 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 14:08:45 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-30 14:08:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-30 14:08:45 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /favicon.ico - Client: 127.0.0.1
+2025-11-30 14:08:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /favicon.ico - Status: 404 - Time: 0.001s
+2025-11-30 14:08:48 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 14:08:48 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.002s
+2025-11-30 14:08:49 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 14:08:49 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.048s
+2025-11-30 14:12:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 14:12:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.003s
+2025-11-30 14:12:30 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 14:12:30 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.002s
+2025-11-30 14:12:40 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 14:12:42 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 14:12:42 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 14:12:42 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-30 14:12:42 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-30 14:12:42 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 14:12:42 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 14:12:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 14:12:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.002s
+2025-11-30 14:12:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 14:12:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.044s
+2025-11-30 14:12:50 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/all/asdf - Client: 127.0.0.1
+2025-11-30 14:12:50 - hackseoul.api.outfits - INFO - [outfits.py:34] - get_outfit_by_brand() - Get outfits by brand request: brand=asdf
+2025-11-30 14:12:50 - hackseoul.api.outfits - ERROR - [outfits.py:43] - get_outfit_by_brand() - Error getting outfits by brand=asdf: [Errno 2] No such file or directory: 'src/data/lacoste_coupang_combined.json'
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/src/api/outfits.py", line 38, in get_outfit_by_brand
+    with open(f"src/data/lacoste_coupang_combined.json", "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/data/lacoste_coupang_combined.json'
+2025-11-30 14:12:50 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/all/asdf - Status: 500 - Time: 0.003s
+2025-11-30 14:13:34 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/all/asdf - Client: 127.0.0.1
+2025-11-30 14:13:34 - hackseoul.api.outfits - INFO - [outfits.py:34] - get_outfit_by_brand() - Get outfits by brand request: brand=asdf
+2025-11-30 14:13:34 - hackseoul.api.outfits - ERROR - [outfits.py:43] - get_outfit_by_brand() - Error getting outfits by brand=asdf: [Errno 2] No such file or directory: 'src/data/lacoste_coupang_combined.json'
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/src/api/outfits.py", line 38, in get_outfit_by_brand
+    with open(f"../data/lacoste_coupang_combined.json", "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/data/lacoste_coupang_combined.json'
+2025-11-30 14:13:34 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/all/asdf - Status: 500 - Time: 0.002s
+2025-11-30 14:13:47 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/all/asdf - Client: 127.0.0.1
+2025-11-30 14:13:47 - hackseoul.api.outfits - INFO - [outfits.py:34] - get_outfit_by_brand() - Get outfits by brand request: brand=asdf
+2025-11-30 14:13:47 - hackseoul.api.outfits - ERROR - [outfits.py:43] - get_outfit_by_brand() - Error getting outfits by brand=asdf: [Errno 2] No such file or directory: 'src/data/lacoste_coupang_combined.json'
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/src/api/outfits.py", line 38, in get_outfit_by_brand
+    with open(f"../../data/lacoste_coupang_combined.json", "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/data/lacoste_coupang_combined.json'
+2025-11-30 14:13:47 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/all/asdf - Status: 500 - Time: 0.002s
+2025-11-30 14:16:47 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 14:16:49 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 14:16:49 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 14:16:49 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-30 14:16:49 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-30 14:16:49 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 14:16:49 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 14:16:53 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 14:16:53 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.001s
+2025-11-30 14:16:53 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 14:16:53 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.027s
+2025-11-30 14:17:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/all/фыв - Client: 127.0.0.1
+2025-11-30 14:17:02 - hackseoul.api.outfits - INFO - [outfits.py:36] - get_outfit_by_brand() - Get outfits by brand request: brand=фыв
+2025-11-30 14:17:02 - hackseoul.api.outfits - INFO - [outfits.py:46] - get_outfit_by_brand() - Found 98 outfits for brand=фыв
+2025-11-30 14:17:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/all/фыв - Status: 200 - Time: 0.008s

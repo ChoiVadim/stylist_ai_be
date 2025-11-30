@@ -20,7 +20,7 @@ security = HTTPBearer()
 # JWT settings
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30 * 24 * 60  # 30 days
+ACCESS_TOKEN_EXPIRE_MINUTES = 30 * 24 * 60 # 30 days
 
 if not SECRET_KEY:
     logger.warning("SECRET_KEY not set in environment variables! Using default (not secure for production)")

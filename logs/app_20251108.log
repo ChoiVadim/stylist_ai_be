@@ -531,3 +531,10 @@
 2025-11-09 00:47:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
 2025-11-09 00:48:14 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
 2025-11-09 00:48:14 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:48:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:48:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:49:14 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:49:14 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.001s
+2025-11-09 00:49:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-09 00:49:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-09 00:50:06 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...

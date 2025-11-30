@@ -3,6 +3,8 @@ Outfit-related API endpoints.
 """
 from fastapi import APIRouter, HTTPException
 import time
+import json
+import os
 from src.database.db import (
     get_outfit_by_season as db_get_outfit_by_season,
     get_outfit_by_category as db_get_outfit_by_category,
@@ -20,6 +22,32 @@ from src.utils.image_validator import (
 logger = get_logger("api.outfits")
 router = APIRouter(prefix="/api/outfit", tags=["outfits"])
 
+@router.get("/all/{brand}")
+def get_outfit_by_brand(brand: str):
+    """
+    Get outfits filtered by brand.
+    
+    Args:
+        brand: Brand name (e.g., "lacoste", "zara")
+    
+    Returns:
+        List of outfit items matching the brand
+    """
+    logger.info(f"Get outfits by brand request: brand={brand}")
+    
+    try:
+        #TODO: move it to db
+        # Construct absolute path to the data file
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        data_path = os.path.join(base_dir, "data", "lacoste_coupang_combined.json")
+        
+        with open(data_path, "r") as f:
+            results = json.load(f)
+        logger.info(f"Found {len(results)} outfits for brand={brand}")
+        return results
+    except Exception as e:
+        logger.error(f"Error getting outfits by brand={brand}: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error retrieving outfits: {str(e)}")
 
 @router.get("/season/{season}")
 def get_outfit_by_season(season: str):
