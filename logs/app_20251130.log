@@ -114,3 +114,34 @@ FileNotFoundError: [Errno 2] No such file or directory: 'src/data/lacoste_coupan
 2025-11-30 14:35:55 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Light Summer/category/dress/brand/lacost - Client: 127.0.0.1
 2025-11-30 14:35:55 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 4 outfits for season=Light Summer, category=dress
 2025-11-30 14:35:55 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Light Summer/category/dress/brand/lacost - Status: 200 - Time: 0.003s
+2025-11-30 14:37:02 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Winter/category/hoodie/brand/hoodie - Client: 127.0.0.1
+2025-11-30 14:37:02 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 7 outfits for season=Deep Winter, category=hoodie
+2025-11-30 14:37:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Winter/category/hoodie/brand/hoodie - Status: 200 - Time: 0.003s
+2025-11-30 14:44:14 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 15:42:31 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 15:42:31 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 15:42:31 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-30 15:42:31 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-30 15:42:31 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 15:42:31 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 15:42:45 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-30 15:42:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.006s
+2025-11-30 15:42:53 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 15:42:53 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.002s
+2025-11-30 15:42:53 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 15:42:53 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.046s
+2025-11-30 15:45:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: POST /api/test/try-on/generate - Client: 127.0.0.1
+2025-11-30 15:45:04 - hackseoul.api.try_on - INFO - [try_on.py:47] - download_try_on_image() - Test try-on generation request received (file upload)
+2025-11-30 15:45:32 - hackseoul.api.try_on - INFO - [try_on.py:80] - download_try_on_image() - Try-on image generated successfully, time=28.11s
+2025-11-30 15:45:32 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: POST /api/test/try-on/generate - Status: 200 - Time: 28.200s
+2025-11-30 15:47:04 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: POST /api/test/try-on/full_outfit - Client: 127.0.0.1
+2025-11-30 15:47:04 - hackseoul.api.try_on - INFO - [try_on.py:100] - download_try_on_full_outfit() - Test full outfit try-on generation request received (file upload)
+2025-11-30 15:47:27 - hackseoul.api.try_on - INFO - [try_on.py:152] - download_try_on_full_outfit() - Full outfit try-on image generated successfully, time=23.28s
+2025-11-30 15:47:27 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: POST /api/test/try-on/full_outfit - Status: 200 - Time: 23.374s
+2025-11-30 15:50:11 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/asd/category/asd/brand/ad - Client: 127.0.0.1
+2025-11-30 15:50:11 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 0 outfits for season=asd, category=asd
+2025-11-30 15:50:11 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/asd/category/asd/brand/ad - Status: 200 - Time: 0.008s
+2025-11-30 15:50:38 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/hoodie/brand/ad - Client: 127.0.0.1
+2025-11-30 15:50:38 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 2 outfits for season=Deep Autumn, category=hoodie
+2025-11-30 15:50:38 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/hoodie/brand/ad - Status: 200 - Time: 0.004s
+2025-11-30 15:50:57 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...

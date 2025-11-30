@@ -195,7 +195,7 @@ def get_outfit_on(
     contents = [prompt, user_image, product_image]
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash-image",
+        model="gemini-3-pro-image-preview",
         contents=contents,
         config=types.GenerateContentConfig(
             image_config=types.ImageConfig(
@@ -246,7 +246,7 @@ def get_outfit_on_full_outfit(
     contents = [prompt, user_image, upper_image, lower_image, shoes_image]
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash-image",
+        model="gemini-3-pro-image-preview",
         contents=contents,
         config=types.GenerateContentConfig(
             image_config=types.ImageConfig(
