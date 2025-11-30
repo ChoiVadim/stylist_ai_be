@@ -69,3 +69,48 @@ FileNotFoundError: [Errno 2] No such file or directory: 'src/data/lacoste_coupan
 2025-11-30 14:17:02 - hackseoul.api.outfits - INFO - [outfits.py:36] - get_outfit_by_brand() - Get outfits by brand request: brand=фыв
 2025-11-30 14:17:02 - hackseoul.api.outfits - INFO - [outfits.py:46] - get_outfit_by_brand() - Found 98 outfits for brand=фыв
 2025-11-30 14:17:02 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/all/фыв - Status: 200 - Time: 0.008s
+2025-11-30 14:17:57 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 14:30:10 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 14:30:10 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 14:30:10 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-30 14:30:10 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-30 14:30:10 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 14:30:10 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 14:30:41 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-30 14:30:41 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-30 14:30:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 14:30:44 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.001s
+2025-11-30 14:30:44 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 14:30:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.046s
+2025-11-30 14:31:27 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:31:27 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.012s
+2025-11-30 14:32:05 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:32:05 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.008s
+2025-11-30 14:32:32 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:32:32 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.010s
+2025-11-30 14:32:54 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:32:54 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.012s
+2025-11-30 14:33:09 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:33:09 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.010s
+2025-11-30 14:33:50 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:33:50 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.004s
+2025-11-30 14:33:55 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:33:55 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.003s
+2025-11-30 14:34:20 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:34:20 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 500 - Time: 0.004s
+2025-11-30 14:35:26 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 14:35:28 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 14:35:28 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 14:35:28 - hackseoul.database - INFO - [user_db.py:150] - init_db() - Initializing database at data/users.db
+2025-11-30 14:35:28 - hackseoul.database - INFO - [user_db.py:152] - init_db() - Database tables created successfully
+2025-11-30 14:35:28 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 14:35:28 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 14:35:34 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Client: 127.0.0.1
+2025-11-30 14:35:34 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 0 outfits for season=Deep Autumn, category=trousers
+2025-11-30 14:35:34 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/trousers/brand/lacosta - Status: 200 - Time: 0.004s
+2025-11-30 14:35:47 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Deep Autumn/category/dress/brand/lacost - Client: 127.0.0.1
+2025-11-30 14:35:47 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 0 outfits for season=Deep Autumn, category=dress
+2025-11-30 14:35:47 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/dress/brand/lacost - Status: 200 - Time: 0.010s
+2025-11-30 14:35:55 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /api/outfit/season/Light Summer/category/dress/brand/lacost - Client: 127.0.0.1
+2025-11-30 14:35:55 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 4 outfits for season=Light Summer, category=dress
+2025-11-30 14:35:55 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Light Summer/category/dress/brand/lacost - Status: 200 - Time: 0.003s

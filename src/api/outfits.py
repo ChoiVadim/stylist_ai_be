@@ -22,31 +22,34 @@ from src.utils.image_validator import (
 logger = get_logger("api.outfits")
 router = APIRouter(prefix="/api/outfit", tags=["outfits"])
 
-@router.get("/all/{brand}")
-def get_outfit_by_brand(brand: str):
+#TODO: testing endpoint, delete it later
+@router.get("/season/{season}/category/{category}/brand/{brand}")
+def get_outfit_by_brand(season: str, category: str, brand: str):
     """
     Get outfits filtered by brand.
     
     Args:
+        season: Personal color type (e.g., "Deep Autumn", "Spring Warm")
+        category: Product category (e.g., "t-shirts", "trousers")
         brand: Brand name (e.g., "lacoste", "zara")
     
     Returns:
-        List of outfit items matching the brand
+        List of outfit items matching all filters
     """
-    logger.info(f"Get outfits by brand request: brand={brand}")
     
     try:
-        #TODO: move it to db
         # Construct absolute path to the data file
         base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         data_path = os.path.join(base_dir, "data", "lacoste_coupang_combined.json")
         
         with open(data_path, "r") as f:
             results = json.load(f)
-        logger.info(f"Found {len(results)} outfits for brand={brand}")
+            # Dont have brand filter in data so skip it
+            results = [outfit for outfit in results if outfit["personalColorType"] == season and outfit["category"] == category]
+            logger.info(f"Found {len(results)} outfits for season={season}, category={category}")
         return results
     except Exception as e:
-        logger.error(f"Error getting outfits by brand={brand}: {str(e)}", exc_info=True)
+        logger.error(f"Error getting outfits by season={season}, category={category}: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error retrieving outfits: {str(e)}")
 
 @router.get("/season/{season}")
