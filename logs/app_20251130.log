@@ -145,3 +145,294 @@ FileNotFoundError: [Errno 2] No such file or directory: 'src/data/lacoste_coupan
 2025-11-30 15:50:38 - hackseoul.api.outfits - INFO - [outfits.py:49] - get_outfit_by_brand() - Found 2 outfits for season=Deep Autumn, category=hoodie
 2025-11-30 15:50:38 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /api/outfit/season/Deep Autumn/category/hoodie/brand/ad - Status: 200 - Time: 0.004s
 2025-11-30 15:50:57 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 16:01:05 - hackseoul.database - INFO - [user_db.py:151] - init_db() - Initializing database at test_data/test.db
+2025-11-30 16:01:05 - hackseoul.database - INFO - [user_db.py:153] - init_db() - Database tables created successfully
+2025-11-30 16:18:50 - hackseoul.database - INFO - [user_db.py:33] - <module>() - Using SQLite database at data/users.db
+2025-11-30 16:18:51 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 16:18:51 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 16:18:51 - hackseoul.database - INFO - [user_db.py:164] - init_db() - Initializing PostgreSQL database
+2025-11-30 16:18:51 - hackseoul.database - INFO - [user_db.py:166] - init_db() - Database tables created successfully
+2025-11-30 16:18:51 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 16:18:51 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 16:19:06 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-30 16:19:06 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.002s
+2025-11-30 16:19:09 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 16:19:09 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.001s
+2025-11-30 16:19:09 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 16:19:09 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.037s
+2025-11-30 16:19:40 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: POST /api/auth/register - Client: 127.0.0.1
+2025-11-30 16:19:40 - hackseoul.api.auth - INFO - [auth.py:37] - register() - Registration attempt for email: strsadasing@
+2025-11-30 16:19:40 - hackseoul.api.auth - INFO - [auth.py:60] - register() - User registered successfully: user_id=4, email=strsadasing@
+2025-11-30 16:19:40 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: POST /api/auth/register - Status: 201 - Time: 0.236s
+2025-11-30 16:22:09 - hackseoul.app - INFO - [app.py:32] - lifespan() - Shutting down Hack Seoul API...
+2025-11-30 16:22:10 - hackseoul.database - INFO - [user_db.py:26] - <module>() - Using PostgreSQL database from DATABASE_URL
+2025-11-30 16:22:15 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 16:22:15 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 16:22:15 - hackseoul.database - INFO - [user_db.py:165] - init_db() - Initializing PostgreSQL database
+2025-11-30 16:22:15 - hackseoul.database - ERROR - [user_db.py:169] - init_db() - Failed to initialize database: (psycopg2.OperationalError) could not translate host name "dpg-d4lup5ruibrs7388tca0-a" to address: nodename nor servname provided, or not known
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3301, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 711, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 673, in __init__
+    self.__connect()
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 899, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 629, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "dpg-d4lup5ruibrs7388tca0-a" to address: nodename nor servname provided, or not known
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/src/database/user_db.py", line 166, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3251, in _run_ddl_visitor
+    with self.begin() as conn:
+         ^^^^^^^^^^^^
+  File "/Users/vadim/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3241, in begin
+    with self.connect() as conn:
+         ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3277, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2440, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3301, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 711, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 673, in __init__
+    self.__connect()
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 899, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 629, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "dpg-d4lup5ruibrs7388tca0-a" to address: nodename nor servname provided, or not known
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-11-30 16:22:15 - hackseoul.app - ERROR - [app.py:25] - lifespan() - Failed to initialize database: (psycopg2.OperationalError) could not translate host name "dpg-d4lup5ruibrs7388tca0-a" to address: nodename nor servname provided, or not known
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3301, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 711, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 673, in __init__
+    self.__connect()
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 899, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 629, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "dpg-d4lup5ruibrs7388tca0-a" to address: nodename nor servname provided, or not known
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/app.py", line 22, in lifespan
+    init_db()
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/src/database/user_db.py", line 166, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 5928, in create_all
+    bind._run_ddl_visitor(
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3251, in _run_ddl_visitor
+    with self.begin() as conn:
+         ^^^^^^^^^^^^
+  File "/Users/vadim/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3241, in begin
+    with self.connect() as conn:
+         ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3277, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2440, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3301, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 711, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 673, in __init__
+    self.__connect()
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 899, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 629, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vadim/Coding/Hackaton/hackseoul_fe/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "dpg-d4lup5ruibrs7388tca0-a" to address: nodename nor servname provided, or not known
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-11-30 16:22:51 - hackseoul.database - INFO - [user_db.py:26] - <module>() - Using PostgreSQL database from DATABASE_URL
+2025-11-30 16:22:52 - hackseoul.utils.auth - INFO - [auth.py:29] - <module>() - SECRET_KEY loaded from environment
+2025-11-30 16:22:52 - hackseoul.app - INFO - [app.py:20] - lifespan() - Starting Hack Seoul API...
+2025-11-30 16:22:52 - hackseoul.database - INFO - [user_db.py:165] - init_db() - Initializing PostgreSQL database
+2025-11-30 16:22:58 - hackseoul.database - INFO - [user_db.py:167] - init_db() - Database tables created successfully
+2025-11-30 16:22:58 - hackseoul.app - INFO - [app.py:23] - lifespan() - Database initialized successfully
+2025-11-30 16:22:58 - hackseoul.app - INFO - [app.py:28] - lifespan() - API startup complete
+2025-11-30 16:24:21 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET / - Client: 127.0.0.1
+2025-11-30 16:24:21 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET / - Status: 200 - Time: 0.003s
+2025-11-30 16:24:25 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /docs - Client: 127.0.0.1
+2025-11-30 16:24:25 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /docs - Status: 200 - Time: 0.001s
+2025-11-30 16:24:25 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: GET /openapi.json - Client: 127.0.0.1
+2025-11-30 16:24:25 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: GET /openapi.json - Status: 200 - Time: 0.034s
+2025-11-30 16:24:45 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: POST /api/auth/register - Client: 127.0.0.1
+2025-11-30 16:24:45 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: POST /api/auth/register - Status: 422 - Time: 0.005s
+2025-11-30 16:24:56 - hackseoul.app - INFO - [app.py:67] - log_requests() - Request: POST /api/auth/register - Client: 127.0.0.1
+2025-11-30 16:24:56 - hackseoul.api.auth - INFO - [auth.py:37] - register() - Registration attempt for email: 123456
+2025-11-30 16:24:57 - hackseoul.api.auth - INFO - [auth.py:60] - register() - User registered successfully: user_id=1, email=123456
+2025-11-30 16:24:57 - hackseoul.app - INFO - [app.py:77] - log_requests() - Response: POST /api/auth/register - Status: 201 - Time: 1.358s

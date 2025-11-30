@@ -6,19 +6,33 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Foreign
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from pathlib import Path
+import os
 from src.utils.logger import get_logger
+from src.config import config
 
 logger = get_logger("database")
 
-# Database file path
-DB_PATH = Path("data/users.db")
-DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+# Database configuration
+# If DATABASE_URL is provided (e.g., PostgreSQL from Render), use it
+# Otherwise, fall back to SQLite
+DATABASE_URL = config.get_database_url()
 
-# SQLite database URL
-DATABASE_URL = f"sqlite:///{DB_PATH}"
-
-# Create engine
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+if DATABASE_URL:
+    # PostgreSQL database (e.g., from Render)
+    # Render provides DATABASE_URL in format: postgresql://user:password@host:port/dbname
+    # If it starts with postgres://, convert to postgresql:// for SQLAlchemy 2.0+
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    logger.info("Using PostgreSQL database from DATABASE_URL")
+    # PostgreSQL connection args
+    engine = create_engine(DATABASE_URL, pool_pre_ping=True, pool_size=5, max_overflow=10)
+else:
+    # SQLite database (fallback for local development)
+    DB_PATH = Path("data/users.db")
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DATABASE_URL = f"sqlite:///{DB_PATH}"
+    logger.info(f"Using SQLite database at {DB_PATH}")
+    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
 # Create session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -147,7 +161,8 @@ class Popularity(Base):
 def init_db():
     """Initialize database - create all tables."""
     try:
-        logger.info(f"Initializing database at {DB_PATH}")
+        db_type = "PostgreSQL" if os.getenv("DATABASE_URL") else f"SQLite at {os.getenv('DB_PATH', 'data/users.db')}"
+        logger.info(f"Initializing {db_type} database")
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created successfully")
     except Exception as e:

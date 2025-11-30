@@ -17,6 +17,7 @@ class Config:
         self.client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
         self._openai_key = os.getenv("OPENAI_API_KEY")
         self._anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+        self._database_url = os.getenv("DATABASE_URL")
 
     def get_client(self):
         return self.client
@@ -30,6 +31,11 @@ class Config:
         if not self._anthropic_key:
             raise ValueError("ANTHROPIC_API_KEY not found in environment variables")
         return self._anthropic_key
+
+    def get_database_url(self):
+        if not self._database_url:
+            raise ValueError("DATABASE_URL not found in environment variables")
+        return self._database_url
 
 
 config = Config()
